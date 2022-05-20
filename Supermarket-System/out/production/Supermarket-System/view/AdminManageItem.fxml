@@ -2,6 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -18,29 +20,44 @@
       </Label>
       <JFXTextField labelFloat="true" layoutX="32.0" layoutY="104.0" prefHeight="27.0" prefWidth="454.0" promptText="Item Code">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Arial" size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
       </JFXTextField>
       <Separator layoutX="9.0" layoutY="63.0" prefHeight="3.0" prefWidth="581.0" />
       <JFXButton layoutX="521.0" layoutY="23.0" onAction="#btnGoHomeOnAction" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Home">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <JFXTextField labelFloat="true" layoutX="32.0" layoutY="154.0" prefHeight="27.0" prefWidth="454.0" promptText="Description">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Arial" size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
       </JFXTextField>
       <JFXTextField labelFloat="true" layoutX="32.0" layoutY="210.0" prefHeight="27.0" prefWidth="454.0" promptText="Unit Price">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Arial" size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
       </JFXTextField>
       <JFXTextField labelFloat="true" layoutX="32.0" layoutY="266.0" prefHeight="27.0" prefWidth="454.0" promptText="QtyOnHand">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Arial" size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
       </JFXTextField>
       <TableView layoutX="22.0" layoutY="361.0" prefHeight="200.0" prefWidth="557.0">
         <columns>
@@ -54,16 +71,28 @@
          <font>
             <Font name="Arial" size="16.0" />
          </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
       </JFXButton>
       <JFXButton buttonType="RAISED" layoutX="263.0" layoutY="309.0" onAction="#btnDeleteItemOnAction" ripplerFill="#ff2d04" style="-fx-background-color: #f39c12;" text="Delete">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor>
       </JFXButton>
       <JFXButton layoutX="539.0" layoutY="87.0" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="+">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
    </children>
 </AnchorPane>

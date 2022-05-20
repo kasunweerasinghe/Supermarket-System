@@ -26,8 +26,9 @@ public class MainFormController {
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AdminselectReportorItem.fxml"))));
             stage.centerOnScreen();
         }else if(tempUserName.equals("cashier") && tempPassword.equals("cashier1")){
-//            Stage stage =(Stage) MainLoginFormContext.getScene().getWindow();
-//            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/"))));
+            Stage stage =(Stage) MainLoginFormContext.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/CashierSelectOrdersorCustomer.fxml"))));
+            stage.centerOnScreen();
         }else {
             new Alert(Alert.AlertType.WARNING, "Try Again!").show();
         }
