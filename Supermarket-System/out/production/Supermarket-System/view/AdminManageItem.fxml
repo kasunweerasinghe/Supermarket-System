@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="AdminManageItemFormContext" prefHeight="584.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminManageItemFormController">
    <children>
-      <Label layoutX="14.0" layoutY="25.0" text="Manage Items">
+      <Label layoutX="14.0" layoutY="25.0" text="Manage Items" textFill="#2980b9">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
@@ -59,6 +58,11 @@
       <JFXButton buttonType="RAISED" layoutX="263.0" layoutY="309.0" onAction="#btnDeleteItemOnAction" ripplerFill="#ff2d04" style="-fx-background-color: #f39c12;" text="Delete">
          <font>
             <Font name="Arial" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="539.0" layoutY="87.0" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="+">
+         <font>
+            <Font name="Arial Black" size="14.0" />
          </font>
       </JFXButton>
    </children>
