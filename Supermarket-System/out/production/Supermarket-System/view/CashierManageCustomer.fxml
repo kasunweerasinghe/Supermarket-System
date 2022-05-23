@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="CashierManageCustomerFormContext" prefHeight="584.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CashierManageCustomerFormController">
    <children>
-      <Label layoutX="17.0" layoutY="23.0" text="Manage Customer" textFill="#2980b9">
+      <Label layoutX="18.0" layoutY="16.0" text="Manage Customer" textFill="#2980b9">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
@@ -25,8 +25,8 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <Separator layoutX="11.0" layoutY="73.0" prefHeight="3.0" prefWidth="734.0" />
-      <JFXButton layoutX="662.0" layoutY="20.0" onAction="#btnGoHomeOnAction" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Home">
+      <Separator layoutX="11.0" layoutY="57.0" prefHeight="3.0" prefWidth="734.0" />
+      <JFXButton layoutX="668.0" layoutY="13.0" onAction="#btnGoHomeOnAction" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Home">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
@@ -84,7 +84,7 @@
             <Cursor fx:constant="DISAPPEAR" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnAddNewCustomer" layoutX="696.0" layoutY="80.0" onAction="#btnAddNewCustomerOnAction" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="+">
+      <JFXButton fx:id="btnAddNewCustomer" layoutX="603.0" layoutY="66.0" onAction="#btnAddNewCustomerOnAction" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Add  Customer">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>

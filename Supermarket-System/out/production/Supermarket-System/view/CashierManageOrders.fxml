@@ -75,7 +75,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXButton buttonType="RAISED" layoutX="665.0" layoutY="277.0" onAction="#btnAddOrderOnAction" ripplerFill="#bf3232" style="-fx-background-color: #27ae60; -fx-background-radius: 5; -fx-border-color: #000000; -fx-border-radius: 5;" text="Add" textFill="WHITE">
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="665.0" layoutY="277.0" onAction="#btnAddOrderOnAction" ripplerFill="#bf3232" style="-fx-background-color: #27ae60; -fx-background-radius: 5; -fx-border-color: #000000; -fx-border-radius: 5;" text="Add" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
@@ -85,15 +85,15 @@
       </JFXButton>
       <TableView fx:id="tblOrder" layoutX="9.0" layoutY="347.0" prefHeight="210.0" prefWidth="734.0">
         <columns>
-          <TableColumn prefWidth="135.0" text="Item Code" />
-          <TableColumn prefWidth="162.0" text="Description" />
-            <TableColumn prefWidth="114.0" text="QTY" />
-            <TableColumn prefWidth="127.0" text="Unit Price" />
-            <TableColumn prefWidth="99.0" text="Total" />
-            <TableColumn prefWidth="96.0" text="Delete" />
+          <TableColumn fx:id="colItemCode" prefWidth="135.0" text="Item Code" />
+          <TableColumn fx:id="colDescription" prefWidth="162.0" text="Description" />
+            <TableColumn fx:id="colQty" prefWidth="114.0" text="QTY" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="127.0" text="Unit Price" />
+            <TableColumn fx:id="colTotal" prefWidth="99.0" text="Total" />
+            <TableColumn fx:id="colButton" prefWidth="96.0" text="Delete" />
         </columns>
       </TableView>
-      <Label fx:id="lblOrderID" layoutX="613.0" layoutY="89.0" text="Order ID:  OID-005">
+      <Label fx:id="lblOrderID" layoutX="613.0" layoutY="89.0" text="Order ID:  OID-000">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
@@ -103,7 +103,7 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="631.0" layoutY="576.0" onAction="#btnPlaceOrderOnAction" ripplerFill="#bf3232" style="-fx-background-color: #27ae60; -fx-background-radius: 5; -fx-border-color: #000000; -fx-border-radius: 5;" text="Place Order" textFill="WHITE">
+      <JFXButton fx:id="btnPlaceOrder" buttonType="RAISED" layoutX="631.0" layoutY="576.0" onAction="#btnPlaceOrderOnAction" ripplerFill="#bf3232" style="-fx-background-color: #27ae60; -fx-background-radius: 5; -fx-border-color: #000000; -fx-border-radius: 5;" text="Place Order" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>

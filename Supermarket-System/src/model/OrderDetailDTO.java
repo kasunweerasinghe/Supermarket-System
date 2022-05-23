@@ -3,61 +3,49 @@ package model;
 import java.math.BigDecimal;
 
 public class OrderDetailDTO {
-
-     private String OrderID;
-     private String ItemCode;
-     private int OrderQTY;
-     private BigDecimal Discount;
+    private String itemCode;
+    private int qty;
+    private BigDecimal unitPrice;
 
     public OrderDetailDTO() {
     }
 
-    public OrderDetailDTO(String orderID, String itemCode, int orderQTY, BigDecimal discount) {
-        OrderID = orderID;
-        ItemCode = itemCode;
-        OrderQTY = orderQTY;
-        Discount = discount;
-    }
-
-    public String getOrderID() {
-        return OrderID;
-    }
-
-    public void setOrderID(String orderID) {
-        OrderID = orderID;
+    public OrderDetailDTO(String itemCode, int qty, BigDecimal unitPrice) {
+        this.itemCode = itemCode;
+        this.qty = qty;
+        this.unitPrice = unitPrice;
     }
 
     public String getItemCode() {
-        return ItemCode;
+        return itemCode;
     }
 
     public void setItemCode(String itemCode) {
-        ItemCode = itemCode;
+        this.itemCode = itemCode;
     }
 
-    public int getOrderQTY() {
-        return OrderQTY;
+    public int getQty() {
+        return qty;
     }
 
-    public void setOrderQTY(int orderQTY) {
-        OrderQTY = orderQTY;
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 
-    public BigDecimal getDiscount() {
-        return Discount;
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setDiscount(BigDecimal discount) {
-        Discount = discount;
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     @Override
     public String toString() {
         return "OrderDetailDTO{" +
-                "OrderID='" + OrderID + '\'' +
-                ", ItemCode='" + ItemCode + '\'' +
-                ", OrderQTY=" + OrderQTY +
-                ", Discount=" + Discount +
+                "itemCode='" + itemCode + '\'' +
+                ", qty=" + qty +
+                ", unitPrice=" + unitPrice +
                 '}';
     }
 }
