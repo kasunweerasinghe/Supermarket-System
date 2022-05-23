@@ -1,18 +1,17 @@
-package model;
+package view.tm;
 
 import java.math.BigDecimal;
 
-public class ItemDTO {
+public class ItemTM {
+     private String ItemCode;
+     private String Description;
+     private BigDecimal UnitPrice;
+     private int QtyOnHand;
 
-    private String ItemCode;
-    private String Description;
-    private BigDecimal UnitPrice;
-    private int QtyOnHand;
-
-    public ItemDTO() {
+    public ItemTM() {
     }
 
-    public ItemDTO(String itemCode, String description, BigDecimal unitPrice, int qtyOnHand) {
+    public ItemTM(String itemCode, String description, BigDecimal unitPrice, int qtyOnHand) {
         ItemCode = itemCode;
         Description = description;
         UnitPrice = unitPrice;
@@ -53,7 +52,7 @@ public class ItemDTO {
 
     @Override
     public String toString() {
-        return "ItemDTO{" +
+        return "ItemTM{" +
                 "ItemCode='" + ItemCode + '\'' +
                 ", Description='" + Description + '\'' +
                 ", UnitPrice=" + UnitPrice +

@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="AdminManageItemFormContext" prefHeight="584.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminManageItemFormController">
    <children>
-      <Label layoutX="14.0" layoutY="25.0" text="Manage Items" textFill="#2980b9">
+      <Label layoutX="14.0" layoutY="10.0" text="Manage Items" textFill="#2980b9">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
@@ -26,8 +26,8 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <Separator layoutX="9.0" layoutY="63.0" prefHeight="3.0" prefWidth="581.0" />
-      <JFXButton layoutX="521.0" layoutY="23.0" onAction="#btnGoHomeOnAction" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Home">
+      <Separator layoutX="9.0" layoutY="51.0" prefHeight="3.0" prefWidth="581.0" />
+      <JFXButton layoutX="521.0" layoutY="8.0" onAction="#btnGoHomeOnAction" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Home">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
@@ -61,13 +61,13 @@
       </JFXTextField>
       <TableView fx:id="tblItem" layoutX="22.0" layoutY="361.0" prefHeight="200.0" prefWidth="557.0">
         <columns>
-          <TableColumn prefWidth="113.0" text="Code" />
-          <TableColumn prefWidth="233.0" text="Decription" />
-            <TableColumn prefWidth="106.0" text="Qty On Hand" />
-            <TableColumn prefWidth="103.0" text="Unit Price" />
+          <TableColumn fx:id="colCode" prefWidth="113.0" text="Code" />
+          <TableColumn fx:id="colDescription" prefWidth="233.0" text="Decription" />
+            <TableColumn fx:id="colQtyOnHand" prefWidth="106.0" text="Qty On Hand" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="103.0" text="Unit Price" />
         </columns>
       </TableView>
-      <JFXButton buttonType="RAISED" layoutX="196.0" layoutY="309.0" onAction="#btnSaveItemOnAction" style="-fx-background-color: #2ecc71;" text="Save">
+      <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="220.0" layoutY="309.0" onAction="#btnSaveItemOnAction" style="-fx-background-color: #2ecc71;" text="Save">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -78,7 +78,7 @@
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="263.0" layoutY="309.0" onAction="#btnDeleteItemOnAction" ripplerFill="#ff2d04" style="-fx-background-color: #f39c12;" text="Delete">
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="305.0" layoutY="309.0" onAction="#btnDeleteItemOnAction" ripplerFill="#ff2d04" style="-fx-background-color: #f39c12;" text="Delete">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -86,7 +86,7 @@
             <Cursor fx:constant="DISAPPEAR" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="539.0" layoutY="87.0" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="+">
+      <JFXButton fx:id="btnAddNewItem" layoutX="458.0" layoutY="61.0" onAction="#btnAddNewItemOnAction" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Add New Item" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
