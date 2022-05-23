@@ -17,7 +17,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Label>
-      <JFXTextField labelFloat="true" layoutX="42.0" layoutY="109.0" prefHeight="27.0" prefWidth="246.0" promptText="Customer ID">
+      <JFXTextField fx:id="txtCustomerID" labelFloat="true" layoutX="42.0" layoutY="109.0" prefHeight="27.0" prefWidth="246.0" promptText="Customer ID">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -34,7 +34,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXTextField labelFloat="true" layoutX="389.0" layoutY="109.0" prefHeight="27.0" prefWidth="246.0" promptText="Customer Name">
+      <JFXTextField fx:id="txtCustomerName" labelFloat="true" layoutX="389.0" layoutY="109.0" prefHeight="27.0" prefWidth="246.0" promptText="Customer Name">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -42,7 +42,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="37.0" layoutY="180.0" prefHeight="27.0" prefWidth="246.0" promptText="Customer Address">
+      <JFXTextField fx:id="txtCustomerAddress" labelFloat="true" layoutX="37.0" layoutY="180.0" prefHeight="27.0" prefWidth="246.0" promptText="Customer Address">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -50,7 +50,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="389.0" layoutY="181.0" prefHeight="27.0" prefWidth="246.0" promptText="City">
+      <JFXTextField fx:id="txtCustomerCity" labelFloat="true" layoutX="389.0" layoutY="181.0" prefHeight="27.0" prefWidth="246.0" promptText="City">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -58,7 +58,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <TableView layoutX="6.0" layoutY="350.0" prefHeight="228.0" prefWidth="740.0">
+      <TableView fx:id="tblCustomer" layoutX="6.0" layoutY="350.0" prefHeight="228.0" prefWidth="740.0">
          <columns>
             <TableColumn prefWidth="113.0" text="Customer ID" />
             <TableColumn prefWidth="174.0" text="Customer Name" />
@@ -92,7 +92,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXTextField labelFloat="true" layoutX="37.0" layoutY="250.0" prefHeight="27.0" prefWidth="246.0" promptText="Province">
+      <JFXTextField fx:id="txtCustomerProvince" labelFloat="true" layoutX="37.0" layoutY="250.0" prefHeight="27.0" prefWidth="246.0" promptText="Province">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -100,7 +100,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="389.0" layoutY="251.0" prefHeight="27.0" prefWidth="246.0" promptText="Postal Code">
+      <JFXTextField fx:id="txtCustomerPostalCode" labelFloat="true" layoutX="389.0" layoutY="251.0" prefHeight="27.0" prefWidth="246.0" promptText="Postal Code">
          <font>
             <Font name="Arial" size="16.0" />
          </font>

@@ -18,7 +18,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Label>
-      <JFXTextField labelFloat="true" layoutX="32.0" layoutY="104.0" prefHeight="27.0" prefWidth="454.0" promptText="Item Code">
+      <JFXTextField fx:id="txtItemCode" labelFloat="true" layoutX="32.0" layoutY="104.0" prefHeight="27.0" prefWidth="454.0" promptText="Item Code">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -35,7 +35,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXTextField labelFloat="true" layoutX="32.0" layoutY="154.0" prefHeight="27.0" prefWidth="454.0" promptText="Description">
+      <JFXTextField fx:id="txtItemDescription" labelFloat="true" layoutX="32.0" layoutY="154.0" prefHeight="27.0" prefWidth="454.0" promptText="Description">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -43,7 +43,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="32.0" layoutY="210.0" prefHeight="27.0" prefWidth="454.0" promptText="Unit Price">
+      <JFXTextField fx:id="txtUnitPrice" labelFloat="true" layoutX="32.0" layoutY="210.0" prefHeight="27.0" prefWidth="454.0" promptText="Unit Price">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -51,7 +51,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="32.0" layoutY="266.0" prefHeight="27.0" prefWidth="454.0" promptText="QtyOnHand">
+      <JFXTextField fx:id="txtQtyOnHand" labelFloat="true" layoutX="32.0" layoutY="266.0" prefHeight="27.0" prefWidth="454.0" promptText="QtyOnHand">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -59,7 +59,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <TableView layoutX="22.0" layoutY="361.0" prefHeight="200.0" prefWidth="557.0">
+      <TableView fx:id="tblItem" layoutX="22.0" layoutY="361.0" prefHeight="200.0" prefWidth="557.0">
         <columns>
           <TableColumn prefWidth="113.0" text="Code" />
           <TableColumn prefWidth="233.0" text="Decription" />

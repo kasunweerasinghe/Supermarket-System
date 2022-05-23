@@ -27,7 +27,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXTextField labelFloat="true" layoutX="285.0" layoutY="154.0" prefHeight="32.0" prefWidth="426.0" promptText="Customer Name">
+      <JFXTextField fx:id="txtCustomerName" labelFloat="true" layoutX="285.0" layoutY="154.0" prefHeight="32.0" prefWidth="426.0" promptText="Customer Name">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -35,7 +35,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="285.0" layoutY="211.0" prefHeight="32.0" prefWidth="426.0" promptText="Item Description ">
+      <JFXTextField fx:id="txtItemDescription" labelFloat="true" layoutX="285.0" layoutY="211.0" prefHeight="32.0" prefWidth="426.0" promptText="Item Description ">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -43,15 +43,15 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXComboBox layoutX="24.0" layoutY="154.0" prefHeight="27.0" prefWidth="177.0" promptText="Customer ID">
+      <JFXComboBox fx:id="cmbCustomerID" layoutX="24.0" layoutY="154.0" prefHeight="27.0" prefWidth="177.0" promptText="Customer ID">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXComboBox>
-      <JFXComboBox layoutX="24.0" layoutY="211.0" prefHeight="27.0" prefWidth="177.0" promptText="Item Code">
+      <JFXComboBox fx:id="cmbItemCode" layoutX="24.0" layoutY="211.0" prefHeight="27.0" prefWidth="177.0" promptText="Item Code">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXComboBox>
-      <JFXTextField editable="false" labelFloat="true" layoutX="24.0" layoutY="277.0" prefHeight="27.0" prefWidth="177.0" promptText="Qty On Hand">
+      <JFXTextField fx:id="txtQtyOnHand" editable="false" labelFloat="true" layoutX="24.0" layoutY="277.0" prefHeight="27.0" prefWidth="177.0" promptText="Qty On Hand">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -59,7 +59,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXTextField editable="false" labelFloat="true" layoutX="285.0" layoutY="277.0" prefHeight="27.0" prefWidth="123.0" promptText="Unit Price">
+      <JFXTextField fx:id="txtUnitPrice" editable="false" labelFloat="true" layoutX="285.0" layoutY="277.0" prefHeight="27.0" prefWidth="123.0" promptText="Unit Price">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -67,7 +67,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="438.0" layoutY="277.0" prefHeight="27.0" prefWidth="123.0" promptText="QTY">
+      <JFXTextField fx:id="txtQty" labelFloat="true" layoutX="438.0" layoutY="277.0" prefHeight="27.0" prefWidth="123.0" promptText="QTY">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -83,7 +83,7 @@
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
       </JFXButton>
-      <TableView layoutX="9.0" layoutY="347.0" prefHeight="210.0" prefWidth="734.0">
+      <TableView fx:id="tblOrder" layoutX="9.0" layoutY="347.0" prefHeight="210.0" prefWidth="734.0">
         <columns>
           <TableColumn prefWidth="135.0" text="Item Code" />
           <TableColumn prefWidth="162.0" text="Description" />
@@ -93,12 +93,12 @@
             <TableColumn prefWidth="96.0" text="Delete" />
         </columns>
       </TableView>
-      <Label layoutX="613.0" layoutY="89.0" text="Order ID:  OID-005">
+      <Label fx:id="lblOrderID" layoutX="613.0" layoutY="89.0" text="Order ID:  OID-005">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="613.0" layoutY="114.0" text="2022-05-20">
+      <Label fx:id="lblDate" layoutX="613.0" layoutY="114.0" text="2022-05-20">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
@@ -116,7 +116,7 @@
             <Font name="Arial" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="107.0" layoutY="576.0" text="0.00">
+      <Label fx:id="lblTotal" layoutX="107.0" layoutY="576.0" text="0.00">
          <font>
             <Font name="Arial" size="30.0" />
          </font>

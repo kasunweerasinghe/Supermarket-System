@@ -21,7 +21,7 @@
             <Image url="@assests/report.png" />
          </image>
       </ImageView>
-      <JFXButton buttonType="RAISED" layoutX="450.0" layoutY="18.0" onAction="#btnGoBackOnAction" style="-fx-background-color: #27ae60; -fx-background-radius: 5;" text="Log Out" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="445.0" layoutY="18.0" onAction="#btnGoBackOnAction" style="-fx-background-color: #27ae60; -fx-background-radius: 5;" text="Log Out" textFill="WHITE">
          <font>
             <Font name="Arial Bold Italic" size="16.0" />
          </font>
@@ -46,11 +46,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Label layoutX="126.0" layoutY="33.0" text="STOP &amp; SHOP" textFill="#e40707">
+      <Separator layoutX="2.0" layoutY="84.0" prefHeight="3.0" prefWidth="529.0" />
+      <Label layoutX="143.0" layoutY="24.0" text=" Fresh Choice" textFill="#e40707">
          <font>
             <Font name="Arial Black" size="30.0" />
          </font>
       </Label>
-      <Separator layoutX="2.0" layoutY="89.0" prefHeight="3.0" prefWidth="529.0" />
    </children>
 </AnchorPane>

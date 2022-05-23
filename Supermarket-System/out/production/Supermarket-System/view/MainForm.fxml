@@ -5,12 +5,19 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="MainLoginFormContext" prefHeight="430.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
    <children>
-      <Label layoutX="133.0" layoutY="21.0" text="STOP &amp; SHOP" textFill="#e40707">
+      <ImageView fitHeight="432.0" fitWidth="512.0" layoutX="3.0" pickOnBounds="true">
+         <image>
+            <Image url="@assests/v915-techi-020.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="133.0" layoutY="21.0" text=" Fresh Choice" textFill="#e40707">
          <font>
             <Font name="Arial Black" size="30.0" />
          </font>
