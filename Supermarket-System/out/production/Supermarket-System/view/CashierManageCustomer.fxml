@@ -60,15 +60,15 @@
       </JFXTextField>
       <TableView fx:id="tblCustomer" layoutX="6.0" layoutY="350.0" prefHeight="228.0" prefWidth="740.0">
          <columns>
-            <TableColumn prefWidth="113.0" text="Customer ID" />
-            <TableColumn prefWidth="174.0" text="Customer Name" />
-            <TableColumn prefWidth="173.0" text="Customer Address" />
-            <TableColumn prefWidth="95.0" text="City" />
-            <TableColumn prefWidth="95.0" text="Province" />
-            <TableColumn prefWidth="95.0" text="Postal Code" />
+            <TableColumn fx:id="colCustomerID" prefWidth="113.0" text="Customer ID" />
+            <TableColumn fx:id="colCustomerName" prefWidth="174.0" text="Customer Name" />
+            <TableColumn fx:id="colCustomerAddress" prefWidth="173.0" text="Customer Address" />
+            <TableColumn fx:id="colCustomerCity" prefWidth="95.0" text="City" />
+            <TableColumn fx:id="colCustomerProvince" prefWidth="95.0" text="Province" />
+            <TableColumn fx:id="colCustomerPostalCode" prefWidth="95.0" text="Postal Code" />
          </columns>
       </TableView>
-      <JFXButton buttonType="RAISED" layoutX="265.0" layoutY="306.0" onAction="#btnSaveCustomerOnAction" style="-fx-background-color: #2ecc71;" text="Save">
+      <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="265.0" layoutY="306.0" onAction="#btnSaveCustomerOnAction" style="-fx-background-color: #2ecc71;" text="Save">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -76,7 +76,7 @@
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="358.0" layoutY="306.0" onAction="#btnDeleteCustomerOnAction" ripplerFill="#ff2d04" style="-fx-background-color: #f39c12;" text="Delete">
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="358.0" layoutY="306.0" onAction="#btnDeleteCustomerOnAction" ripplerFill="#ff2d04" style="-fx-background-color: #f39c12;" text="Delete">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -84,7 +84,7 @@
             <Cursor fx:constant="DISAPPEAR" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="696.0" layoutY="80.0" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="+">
+      <JFXButton fx:id="btnAddNewCustomer" layoutX="696.0" layoutY="80.0" onAction="#btnAddNewCustomerOnAction" ripplerFill="#3f0bc2" style="-fx-background-color: #27ae60; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="+">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>

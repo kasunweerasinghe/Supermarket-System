@@ -221,10 +221,12 @@ public class AdminManageItemFormController {
         txtItemDescription.clear();
         txtUnitPrice.clear();
         txtQtyOnHand.clear();
+
         txtItemCode.setDisable(true);
         txtItemDescription.setDisable(true);
         txtUnitPrice.setDisable(true);
         txtQtyOnHand.setDisable(true);
+
         txtItemCode.setEditable(false);
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
