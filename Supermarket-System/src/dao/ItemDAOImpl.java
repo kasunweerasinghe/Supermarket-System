@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class ItemDAOImpl implements ItemDAO{
 
     public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getDbConnection().getConnection();
-        Statement stm = connection.createStatement();
+//        Connection connection = DBConnection.getDbConnection().getConnection();
+//        Statement stm = connection.createStatement();
         ResultSet rst = stm.executeQuery("SELECT * FROM Supermarket.Item ");
         ArrayList<ItemDTO> getAllItems = new ArrayList<>();
         while (rst.next()){
@@ -26,8 +26,8 @@ public class ItemDAOImpl implements ItemDAO{
     }
 
     public boolean saveItem(ItemDTO dto) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getDbConnection().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("INSERT INTO Supermarket.Item(ItemCode,Description,UnitPrice,QtyOnHand) VALUES(?,?,?,?)");
+//        Connection connection = DBConnection.getDbConnection().getConnection();
+//        PreparedStatement pstm = connection.prepareStatement("INSERT INTO Supermarket.Item(ItemCode,Description,UnitPrice,QtyOnHand) VALUES(?,?,?,?)");
         pstm.setString(1, dto.getItemCode());
         pstm.setString(2,dto.getDescription());
         pstm.setBigDecimal(3,dto.getUnitPrice());
@@ -36,8 +36,8 @@ public class ItemDAOImpl implements ItemDAO{
     }
 
     public boolean updateItem(ItemDTO dto) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getDbConnection().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("UPDATE Supermarket.Item SET Description=?, UnitPrice=?, QtyOnHand=? WHERE ItemCode=?");
+//        Connection connection = DBConnection.getDbConnection().getConnection();
+//        PreparedStatement pstm = connection.prepareStatement("UPDATE Supermarket.Item SET Description=?, UnitPrice=?, QtyOnHand=? WHERE ItemCode=?");
         pstm.setString(1,dto.getDescription());
         pstm.setBigDecimal(2,dto.getUnitPrice());
         pstm.setInt(3,dto.getQtyOnHand());
@@ -46,24 +46,24 @@ public class ItemDAOImpl implements ItemDAO{
     }
 
     public boolean existItem(String code) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getDbConnection().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT ItemCode FROM Supermarket.Item WHERE ItemCode=?");
+//        Connection connection = DBConnection.getDbConnection().getConnection();
+//        PreparedStatement pstm = connection.prepareStatement("SELECT ItemCode FROM Supermarket.Item WHERE ItemCode=?");
         pstm.setString(1, code);
         return pstm.executeQuery().next();
     }
 
     public boolean deleteItem(String code) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getDbConnection().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("DELETE FROM Supermarket.Item WHERE ItemCode=?");
+//        Connection connection = DBConnection.getDbConnection().getConnection();
+//        PreparedStatement pstm = connection.prepareStatement("DELETE FROM Supermarket.Item WHERE ItemCode=?");
         pstm.setString(1, code);
         return pstm.executeUpdate()>0;
 
     }
 
     public String generateNewID() throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getDbConnection().getConnection();
-        connection = DBConnection.getDbConnection().getConnection();
-        ResultSet rst = connection.createStatement().executeQuery("SELECT ItemCode FROM Supermarket.Item ORDER BY ItemCode DESC LIMIT 1");
+//        Connection connection = DBConnection.getDbConnection().getConnection();
+//        connection = DBConnection.getDbConnection().getConnection();
+//        ResultSet rst = connection.createStatement().executeQuery("SELECT ItemCode FROM Supermarket.Item ORDER BY ItemCode DESC LIMIT 1");
         if (rst.next()) {
             String id = rst.getString("ItemCode");
             int newItemId = Integer.parseInt(id.replace("I00-", "")) + 1;
