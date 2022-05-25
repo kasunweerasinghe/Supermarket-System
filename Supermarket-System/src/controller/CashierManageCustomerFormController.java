@@ -71,9 +71,7 @@ public class CashierManageCustomerFormController {
                 txtCustomerID.setDisable(false);
                 txtCustomerName.setDisable(false);
                 txtCustomerAddress.setDisable(false);
-//                txtCustomerCity.setDisable(false);
-//                txtCustomerProvince.setDisable(false);
-//                txtCustomerPostalCode.setDisable(false);
+
             }
         });
 
@@ -124,7 +122,7 @@ public class CashierManageCustomerFormController {
             return;
         }else if (!postalCode.matches("^[0-9]{5}$")) {
             new Alert(Alert.AlertType.ERROR, "postalCode should be at least 3 characters long").show();
-            txtCustomerPostalCode.requestFocus();
+            txtCustomerPostalCode.requestFocus(); 
             return;
         }
 
