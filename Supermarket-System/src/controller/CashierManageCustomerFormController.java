@@ -2,6 +2,7 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import dao.CustomerDAOImpl;
 import db.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import model.CustomerDTO;
 import view.tm.CustomerTM;
 import view.tm.ItemTM;
 
@@ -81,13 +83,15 @@ public class CashierManageCustomerFormController {
     private void loadAllCustomers() {
         tblCustomer.getItems().clear();
         try {
-            //Get All Customers
-            Connection connection = DBConnection.getDbConnection().getConnection();
-            Statement stm = connection.createStatement();
-            ResultSet rst = stm.executeQuery("SELECT * FROM Supermarket.Customer ");
-            while (rst.next()){
-                tblCustomer.getItems().add(new CustomerTM(rst.getString("CustID"),rst.getString("custName"),rst.getString("custAddress"),rst.getString("custCity"),rst.getString("custProvince"),rst.getString("custPostalCode")));
+            //get All Customers
+            //DI
+            CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+            ArrayList<CustomerDTO> allCustomers = customerDAO.getAllCustomers();
+
+            for (CustomerDTO customer: allCustomers) {
+                tblCustomer.getItems().add(new CustomerTM(customer.getCustID(),customer.getCustName(),customer.getCustAddress(),customer.getCustCity(),customer.getCustProvince(),customer.getCustPostalCode()));
             }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
