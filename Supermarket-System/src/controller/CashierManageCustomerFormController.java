@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import view.tm.CustomerTM;
+import view.tm.ItemTM;
 
 import java.io.IOException;
 import java.sql.*;
@@ -41,11 +42,6 @@ public class CashierManageCustomerFormController {
     public JFXButton btnSave;
 
     public void initialize(){
-        loadAllCustomers();
-    }
-
-    private void loadAllCustomers() {
-
         colCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustID"));
         colCustomerName.setCellValueFactory(new PropertyValueFactory<>("custName"));
         colCustomerAddress.setCellValueFactory(new PropertyValueFactory<>("custAddress"));
@@ -71,28 +67,33 @@ public class CashierManageCustomerFormController {
                 txtCustomerID.setDisable(false);
                 txtCustomerName.setDisable(false);
                 txtCustomerAddress.setDisable(false);
+                txtCustomerCity.setDisable(false);
+                txtCustomerProvince.setDisable(false);
+                txtCustomerPostalCode.setDisable(false);
 
             }
         });
 
         txtCustomerPostalCode.setOnAction(event -> btnSave.fire());
+        loadAllCustomers();
+    }
+
+    private void loadAllCustomers() {
         tblCustomer.getItems().clear();
-
-
         try {
             //Get All Customers
             Connection connection = DBConnection.getDbConnection().getConnection();
             Statement stm = connection.createStatement();
-            ResultSet rst = stm.executeQuery("SELECT * FROM Supermarket.Customer");
+            ResultSet rst = stm.executeQuery("SELECT * FROM Supermarket.Customer ");
             while (rst.next()){
                 tblCustomer.getItems().add(new CustomerTM(rst.getString("CustID"),rst.getString("custName"),rst.getString("custAddress"),rst.getString("custCity"),rst.getString("custProvince"),rst.getString("custPostalCode")));
-
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 
 
@@ -122,17 +123,17 @@ public class CashierManageCustomerFormController {
             return;
         }else if (!postalCode.matches("^[0-9]{5}$")) {
             new Alert(Alert.AlertType.ERROR, "postalCode should be at least 3 characters long").show();
-            txtCustomerPostalCode.requestFocus(); 
+            txtCustomerPostalCode.requestFocus();
             return;
         }
 
-
-        if (btnSave.getText().equalsIgnoreCase("save")) {
-            /*Save Customer*/
+        if(btnSave.getText().equalsIgnoreCase("save")){
             try {
-                if (existCustomer(id)) {
+
+                if(existCustomer(id)){
                     new Alert(Alert.AlertType.ERROR, id + " already exists").show();
                 }
+                //Save Item
                 Connection connection = DBConnection.getDbConnection().getConnection();
                 PreparedStatement pstm = connection.prepareStatement("INSERT INTO Supermarket.Customer (custID, custName, custAddress, custCity, custProvince, custPostalCode) VALUES (?,?,?,?,?,?)");
                 pstm.setString(1, id);
@@ -142,21 +143,22 @@ public class CashierManageCustomerFormController {
                 pstm.setString(5,province);
                 pstm.setString(6,postalCode);
                 pstm.executeUpdate();
-
                 tblCustomer.getItems().add(new CustomerTM(id,name,address,city,province,postalCode));
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, "Failed to save the customer " + e.getMessage()).show();
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }else {
-            /*Update customer*/
+        }else{
             try {
-                if (!existCustomer(id)) {
-                    new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + id).show();
+
+                if(!existCustomer(id)){
+                    new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + id).show();
                 }
+                //Update Item
                 Connection connection = DBConnection.getDbConnection().getConnection();
-                PreparedStatement pstm = connection.prepareStatement("UPDATE Supermarket.Customer SET custName=?, custAddress=?, custCity=?, custProvince=?, custPostalCode=?, custID=?");
+                PreparedStatement pstm = connection.prepareStatement("UPDATE Supermarket.Customer SET custName=?, custAddress=?, custCity=?, custProvince=?, custPostalCode=? WHERE custID=?");
                 pstm.setString(1, name);
                 pstm.setString(2, address);
                 pstm.setString(3, city);
@@ -165,21 +167,20 @@ public class CashierManageCustomerFormController {
                 pstm.setString(6, id);
                 pstm.executeUpdate();
 
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, "Failed to update the customer " + id + e.getMessage()).show();
+                CustomerTM selectedCustomer = tblCustomer.getSelectionModel().getSelectedItem();
+                selectedCustomer.setCustName(name);
+                selectedCustomer.setCustAddress(address);
+                selectedCustomer.setCustCity(city);
+                selectedCustomer.setCustProvince(province);
+                selectedCustomer.setCustPostalCode(postalCode);
+                tblCustomer.refresh();
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
-            CustomerTM selectedCustomer = tblCustomer.getSelectionModel().getSelectedItem();
-            selectedCustomer.setCustName(name);
-            selectedCustomer.setCustAddress(address);
-            selectedCustomer.setCustCity(city);
-            selectedCustomer.setCustProvince(province);
-            selectedCustomer.setCustPostalCode(postalCode);
-            tblCustomer.refresh();
         }
-
         btnAddNewCustomer.fire();
 
     }
@@ -240,6 +241,7 @@ public class CashierManageCustomerFormController {
             int newCustomerId = Integer.parseInt(id.replace("C", "")) + 1;
             return String.format("C00-%03d", newCustomerId);
         }
+
 
     }
 

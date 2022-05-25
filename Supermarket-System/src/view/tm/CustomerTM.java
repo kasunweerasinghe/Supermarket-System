@@ -12,7 +12,7 @@ public class CustomerTM {
     }
 
     public CustomerTM(String custID, String custName, String custAddress, String custCity, String custProvince, String custPostalCode) {
-        CustID = custID;
+        this.CustID = custID;
         this.custName = custName;
         this.custAddress = custAddress;
         this.custCity = custCity;

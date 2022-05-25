@@ -67,9 +67,8 @@ public class AdminManageItemFormController {
 
     private void loadAllItem() {
         tblItem.getItems().clear();
-
         try {
-            //Get All Item
+            //Get All Items
             Connection connection = DBConnection.getDbConnection().getConnection();
             Statement stm = connection.createStatement();
             ResultSet rst = stm.executeQuery("SELECT * FROM Supermarket.Item ");
@@ -237,11 +236,13 @@ public class AdminManageItemFormController {
         txtItemDescription.setDisable(false);
         txtUnitPrice.setDisable(false);
         txtQtyOnHand.setDisable(false);
+
         txtItemCode.clear();
         txtItemCode.setText(generateNewID());
         txtItemDescription.clear();
         txtUnitPrice.clear();
         txtQtyOnHand.clear();
+
         txtItemDescription.requestFocus();
         btnSave.setDisable(false);
         btnSave.setText("Save");
