@@ -2,6 +2,7 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import dao.ItemDAOImpl;
 import db.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,11 +15,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import model.ItemDTO;
 import view.tm.ItemTM;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class AdminManageItemFormController {
     public AnchorPane AdminManageItemFormContext;
@@ -68,12 +71,11 @@ public class AdminManageItemFormController {
     private void loadAllItem() {
         tblItem.getItems().clear();
         try {
-            //Get All Items
-            Connection connection = DBConnection.getDbConnection().getConnection();
-            Statement stm = connection.createStatement();
-            ResultSet rst = stm.executeQuery("SELECT * FROM Supermarket.Item ");
-            while (rst.next()){
-                tblItem.getItems().add(new ItemTM(rst.getString("ItemCode"),rst.getString("Description"),rst.getBigDecimal("UnitPrice"),rst.getInt("QtyOnHand")));
+            //DI
+            ItemDAOImpl itemDAO = new ItemDAOImpl();
+            ArrayList<ItemDTO> getAllItems = itemDAO.getAllItems();
+            for(ItemDTO item : getAllItems){
+                tblItem.getItems().add(new ItemTM(item.getItemCode(),item.getDescription(),item.getUnitPrice(),item.getQtyOnHand()));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -110,13 +112,10 @@ public class AdminManageItemFormController {
                     new Alert(Alert.AlertType.ERROR, code + " already exists").show();
                 }
                 //Save Item
-                Connection connection = DBConnection.getDbConnection().getConnection();
-                PreparedStatement pstm = connection.prepareStatement("INSERT INTO Supermarket.Item(ItemCode,Description,UnitPrice,QtyOnHand) VALUES(?,?,?,?)");
-                pstm.setString(1, code);
-                pstm.setString(2,description);
-                pstm.setBigDecimal(3,unitPrice);
-                pstm.setInt(4,qtyOnHand);
-                pstm.executeUpdate();
+                //DI
+                ItemDAOImpl itemDAO = new ItemDAOImpl();
+                itemDAO.saveItem(new ItemDTO(code,description,unitPrice,qtyOnHand));
+
                 tblItem.getItems().add(new ItemTM(code,description,unitPrice,qtyOnHand));
 
             } catch (SQLException throwables) {
@@ -131,13 +130,9 @@ public class AdminManageItemFormController {
                     new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + code).show();
                 }
                 //Update Item
-                Connection connection = DBConnection.getDbConnection().getConnection();
-                PreparedStatement pstm = connection.prepareStatement("UPDATE Supermarket.Item SET Description=?, UnitPrice=?, QtyOnHand=? WHERE ItemCode=?");
-                pstm.setString(1,description);
-                pstm.setBigDecimal(2,unitPrice);
-                pstm.setInt(3,qtyOnHand);
-                pstm.setString(4,code);
-                pstm.executeUpdate();
+                //DI
+                ItemDAOImpl itemDAO = new ItemDAOImpl();
+                itemDAO.updateItem(new ItemDTO(code,description,unitPrice,qtyOnHand));
 
                 ItemTM selectedItem = tblItem.getSelectionModel().getSelectedItem();
                 selectedItem.setDescription(description);
@@ -146,7 +141,7 @@ public class AdminManageItemFormController {
                 tblItem.refresh();
 
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, throwables.getMessage()).show();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -154,6 +149,13 @@ public class AdminManageItemFormController {
         btnAddNewItem.fire();
 
     }
+
+    private boolean existItem(String code) throws SQLException, ClassNotFoundException {
+        //DI
+       ItemDAOImpl itemDAO = new ItemDAOImpl();
+       return itemDAO.existItem(code);
+    }
+
 
     public void btnDeleteItemOnAction(ActionEvent actionEvent) {
         //Delete Item
@@ -164,10 +166,9 @@ public class AdminManageItemFormController {
             if(!existItem(code)){
                 new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + code).show();
             }
-            Connection connection = DBConnection.getDbConnection().getConnection();
-            PreparedStatement pstm = connection.prepareStatement("DELETE FROM Supermarket.Item WHERE ItemCode=?");
-            pstm.setString(1, code);
-            pstm.executeUpdate();
+            //DI
+            ItemDAOImpl itemDAO = new ItemDAOImpl();
+            itemDAO.deleteItem(code);
 
             tblItem.getItems().remove(tblItem.getSelectionModel().getSelectedItem());
             tblItem.getSelectionModel().clearSelection();
@@ -182,25 +183,15 @@ public class AdminManageItemFormController {
 
     }
 
-    private boolean existItem(String code) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getDbConnection().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT ItemCode FROM Supermarket.Item WHERE ItemCode=?");
-        pstm.setString(1, code);
-        return pstm.executeQuery().next();
-    }
+
 
     private String generateNewID() {
         Connection connection = null;
         try {
-            connection = DBConnection.getDbConnection().getConnection();
-            ResultSet rst = connection.createStatement().executeQuery("SELECT ItemCode FROM Supermarket.Item ORDER BY ItemCode DESC LIMIT 1");
-            if (rst.next()) {
-                String id = rst.getString("ItemCode");
-                int newItemId = Integer.parseInt(id.replace("I00-", "")) + 1;
-                return String.format("I00-%03d", newItemId);
-            } else {
-                return "I00-001";
-            }
+            //DI
+            ItemDAOImpl itemDAO = new ItemDAOImpl();
+            return itemDAO.generateNewID();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
