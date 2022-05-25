@@ -138,15 +138,10 @@ public class CashierManageCustomerFormController {
                     new Alert(Alert.AlertType.ERROR, id + " already exists").show();
                 }
                 //Save Item
-                Connection connection = DBConnection.getDbConnection().getConnection();
-                PreparedStatement pstm = connection.prepareStatement("INSERT INTO Supermarket.Customer (custID, custName, custAddress, custCity, custProvince, custPostalCode) VALUES (?,?,?,?,?,?)");
-                pstm.setString(1, id);
-                pstm.setString(2, name);
-                pstm.setString(3, address);
-                pstm.setString(4,city);
-                pstm.setString(5,province);
-                pstm.setString(6,postalCode);
-                pstm.executeUpdate();
+                //DI
+                CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+                customerDAO.saveCustomer( new CustomerDTO(id,name,address,city,province,postalCode));
+
                 tblCustomer.getItems().add(new CustomerTM(id,name,address,city,province,postalCode));
 
             } catch (SQLException throwables) {
@@ -160,16 +155,17 @@ public class CashierManageCustomerFormController {
                 if(!existCustomer(id)){
                     new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + id).show();
                 }
-                //Update Item
-                Connection connection = DBConnection.getDbConnection().getConnection();
-                PreparedStatement pstm = connection.prepareStatement("UPDATE Supermarket.Customer SET custName=?, custAddress=?, custCity=?, custProvince=?, custPostalCode=? WHERE custID=?");
-                pstm.setString(1, name);
-                pstm.setString(2, address);
-                pstm.setString(3, city);
-                pstm.setString(4, province);
-                pstm.setString(5, postalCode);
-                pstm.setString(6, id);
-                pstm.executeUpdate();
+                //Update Customers
+                //DI
+                CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+                customerDAO.updateCustomer(new CustomerDTO(id,address,name,city,province,postalCode));
+
+            } catch (SQLException throwables) {
+                new Alert(Alert.AlertType.ERROR, "Failed to update the customer " + id + throwables.getMessage()).show();
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
 
                 CustomerTM selectedCustomer = tblCustomer.getSelectionModel().getSelectedItem();
                 selectedCustomer.setCustName(name);
@@ -179,15 +175,18 @@ public class CashierManageCustomerFormController {
                 selectedCustomer.setCustPostalCode(postalCode);
                 tblCustomer.refresh();
 
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+
         }
         btnAddNewCustomer.fire();
 
     }
+
+    boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
+        //DI
+        CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+        return customerDAO.existsCustomer(id);
+    }
+
 
     public void btnDeleteCustomerOnAction(ActionEvent actionEvent) {
         /*Delete Customer*/
@@ -196,10 +195,9 @@ public class CashierManageCustomerFormController {
             if (!existCustomer(id)) {
                 new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + id).show();
             }
-            Connection connection = DBConnection.getDbConnection().getConnection();
-            PreparedStatement pstm = connection.prepareStatement("DELETE FROM Supermarket.Customer WHERE custID=?");
-            pstm.setString(1, id);
-            pstm.executeUpdate();
+            //DI
+            CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+            customerDAO.deleteCustomer(id);
 
             tblCustomer.getItems().remove(tblCustomer.getSelectionModel().getSelectedItem());
             tblCustomer.getSelectionModel().clearSelection();
@@ -213,30 +211,19 @@ public class CashierManageCustomerFormController {
 
     }
 
-    boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getDbConnection().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT custID FROM Supermarket.Customer WHERE custID=?");
-        pstm.setString(1, id);
-        return pstm.executeQuery().next();
-    }
+
 
     private String generateNewId() {
         try {
-            Connection connection = DBConnection.getDbConnection().getConnection();
-            ResultSet rst = connection.createStatement().executeQuery("SELECT custID FROM Supermarket.Customer ORDER BY custID DESC LIMIT 1");
-            if (rst.next()) {
-                String id = rst.getString("custID");
-                int newCustomerId = Integer.parseInt(id.replace("C00-", "")) + 1;
-                return String.format("C00-%03d", newCustomerId);
-            } else {
-                return "C00-001";
-            }
+            //DI
+            CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+            return customerDAO.generateNewID();
+
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to generate a new id " + e.getMessage()).show();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
 
         if (tblCustomer.getItems().isEmpty()) {
             return "C00-001";
