@@ -59,7 +59,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <TableView fx:id="tblItem" layoutX="22.0" layoutY="361.0" prefHeight="200.0" prefWidth="557.0">
+      <TableView fx:id="tblItem" layoutX="22.0" layoutY="359.0" prefHeight="219.0" prefWidth="557.0">
         <columns>
           <TableColumn fx:id="colCode" prefWidth="113.0" text="Code" />
           <TableColumn fx:id="colDescription" prefWidth="233.0" text="Decription" />

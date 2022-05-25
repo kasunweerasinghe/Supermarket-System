@@ -99,7 +99,6 @@ public class CashierManageOrdersFormController {
                         if (!existCustomer(newValue + "")) {
                             new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + newValue + "").show();
                         }
-
                         PreparedStatement pstm = connection.prepareStatement("SELECT * FROM Supermarket.Customer WHERE custID=?");
                         pstm.setString(1, newValue + "");
                         ResultSet rst = pstm.executeQuery();

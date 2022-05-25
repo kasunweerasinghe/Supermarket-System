@@ -2,6 +2,7 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import dao.CustomerDAO;
 import dao.CustomerDAOImpl;
 import db.DBConnection;
 import javafx.event.ActionEvent;
@@ -42,6 +43,9 @@ public class CashierManageCustomerFormController {
     public JFXButton btnAddNewCustomer;
     public JFXButton btnDelete;
     public JFXButton btnSave;
+
+    //Property Injection
+    private CustomerDAO customerDAO = new CustomerDAOImpl();
 
     public void initialize(){
         colCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustID"));
@@ -84,8 +88,6 @@ public class CashierManageCustomerFormController {
         tblCustomer.getItems().clear();
         try {
             //get All Customers
-            //DI
-            CustomerDAOImpl customerDAO = new CustomerDAOImpl();
             ArrayList<CustomerDTO> allCustomers = customerDAO.getAllCustomers();
 
             for (CustomerDTO customer: allCustomers) {
@@ -138,8 +140,6 @@ public class CashierManageCustomerFormController {
                     new Alert(Alert.AlertType.ERROR, id + " already exists").show();
                 }
                 //Save Item
-                //DI
-                CustomerDAOImpl customerDAO = new CustomerDAOImpl();
                 customerDAO.saveCustomer( new CustomerDTO(id,name,address,city,province,postalCode));
 
                 tblCustomer.getItems().add(new CustomerTM(id,name,address,city,province,postalCode));
@@ -156,8 +156,6 @@ public class CashierManageCustomerFormController {
                     new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + id).show();
                 }
                 //Update Customers
-                //DI
-                CustomerDAOImpl customerDAO = new CustomerDAOImpl();
                 customerDAO.updateCustomer(new CustomerDTO(id,address,name,city,province,postalCode));
 
             } catch (SQLException throwables) {
@@ -182,8 +180,6 @@ public class CashierManageCustomerFormController {
     }
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        //DI
-        CustomerDAOImpl customerDAO = new CustomerDAOImpl();
         return customerDAO.existsCustomer(id);
     }
 
@@ -195,8 +191,7 @@ public class CashierManageCustomerFormController {
             if (!existCustomer(id)) {
                 new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + id).show();
             }
-            //DI
-            CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+
             customerDAO.deleteCustomer(id);
 
             tblCustomer.getItems().remove(tblCustomer.getSelectionModel().getSelectedItem());
@@ -215,8 +210,7 @@ public class CashierManageCustomerFormController {
 
     private String generateNewId() {
         try {
-            //DI
-            CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+
             return customerDAO.generateNewID();
 
         } catch (SQLException e) {
