@@ -2,8 +2,8 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.CrudDAO;
-import dao.ItemDAOImpl;
+import dao.custom.ItemDAO;
+import dao.custom.impl.ItemDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -37,7 +37,7 @@ public class AdminManageItemFormController {
     public JFXButton btnAddNewItem;
 
     //Property Injection
-    private final CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
+    private final ItemDAO itemDAO = new ItemDAOImpl();
 
     public void initialize(){
         colCode.setCellValueFactory(new PropertyValueFactory("ItemCode"));

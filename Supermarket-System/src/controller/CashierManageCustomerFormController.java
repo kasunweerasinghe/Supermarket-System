@@ -2,8 +2,8 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.CrudDAO;
-import dao.CustomerDAOImpl;
+import dao.custom.CustomerDAO;
+import dao.custom.impl.CustomerDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -41,7 +41,7 @@ public class CashierManageCustomerFormController {
     public JFXButton btnSave;
 
     //Property Injection
-    private final CrudDAO<CustomerDTO,String> customerDAO = new CustomerDAOImpl();
+    private final CustomerDAO customerDAO = new CustomerDAOImpl();
 
     public void initialize(){
         colCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustID"));

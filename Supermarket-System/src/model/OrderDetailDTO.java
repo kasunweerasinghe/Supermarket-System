@@ -3,6 +3,7 @@ package model;
 import java.math.BigDecimal;
 
 public class OrderDetailDTO {
+
     private String orderId;
     private String itemCode;
     private int qty;

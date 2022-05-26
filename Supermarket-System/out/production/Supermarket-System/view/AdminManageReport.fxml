@@ -23,12 +23,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="77.0" layoutY="148.0" ripplerFill="#e81818" style="-fx-background-color: #686de0; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Most Sell Item" textFill="WHITE">
-         <font>
-            <Font name="Arial Bold" size="18.0" />
-         </font>
-      </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="261.0" layoutY="148.0" ripplerFill="#e81818" style="-fx-background-color: #686de0; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Least Sell Item" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="77.0" layoutY="148.0" onAction="#btnSellingItemsReportOnAction" ripplerFill="#e81818" style="-fx-background-color: #686de0; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Selling Items Report" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>

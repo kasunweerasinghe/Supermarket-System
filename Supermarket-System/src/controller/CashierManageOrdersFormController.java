@@ -4,18 +4,17 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import dao.*;
+import dao.custom.*;
+import dao.custom.impl.*;
 import db.DBConnection;
-import javafx.beans.property.Property;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import model.CustomerDTO;
 import model.ItemDTO;
 import model.OrderDTO;
@@ -54,11 +53,12 @@ public class CashierManageOrdersFormController {
     public TableColumn colButton;
     private String orderId;
 
-    //Property Injection
-    private final CrudDAO<CustomerDTO,String> customerDAO = new CustomerDAOImpl();
-    private final CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
-    private final CrudDAO<OrderDTO,String> orderDAO = new OrderDAOImpl();
-    private final CrudDAO<OrderDetailDTO,String> orderDetailDAO = new OrderDetailDAOImpl();
+//    //Property Injection
+//    private final CustomerDAO customerDAO = new CustomerDAOImpl();
+//    private final ItemDAO itemDAO = new ItemDAOImpl();
+//    private final OrderDAO orderDAO = new OrderDAOImpl();
+//    private final OrderDetailDAO orderDetailDAO = new OrderDetailDAOImpl();
+//    private final QueryDAO queryDAO = new QueryDAOImpl();
 
     public void initialize(){
         colItemCode.setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -311,61 +311,61 @@ public class CashierManageOrdersFormController {
     }
 
     public boolean saveOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) {
-        /*Transaction*/
-
-        try {
-            Connection connection = DBConnection.getDbConnection().getConnection();
-
-            /*if order id already exist*/
-            if (orderDAO.exists(orderId)) {
-
-            }
-
-            connection.setAutoCommit(false);
-
-            boolean save = orderDAO.save(new OrderDTO(orderId, orderDate, customerId));
-
-            if (!save) {
-                connection.rollback();
-                connection.setAutoCommit(true);
-                return false;
-            }
-
-            CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
-
-            for (OrderDetailDTO detail : orderDetails) {
-                boolean save1 = orderDetailDAO.save(detail);
-
-                if (!save1) {
-                    connection.rollback();
-                    connection.setAutoCommit(true);
-                    return false;
-                }
-
-                //Search & Update Item
-                ItemDTO item = findItem(detail.getItemCode());
-                item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
-
-                //Update Item
-                boolean update = itemDAO.update(item);
-
-                if (!update) {
-                    connection.rollback();
-                    connection.setAutoCommit(true);
-                    return false;
-                }
-            }
-
-            connection.commit();
-            connection.setAutoCommit(true);
-            return true;
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return false;
+//        /*Transaction*/
+//
+//        try {
+//            Connection connection = DBConnection.getDbConnection().getConnection();
+//
+//            /*if order id already exist*/
+//            if (orderDAO.exists(orderId)) {
+//
+//            }
+//
+//            connection.setAutoCommit(false);
+//
+//            boolean save = orderDAO.save(new OrderDTO(orderId, orderDate, customerId));
+//
+//            if (!save) {
+//                connection.rollback();
+//                connection.setAutoCommit(true);
+//                return false;
+//            }
+//
+//            CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
+//
+//            for (OrderDetailDTO detail : orderDetails) {
+//                boolean save1 = orderDetailDAO.save(detail);
+//
+//                if (!save1) {
+//                    connection.rollback();
+//                    connection.setAutoCommit(true);
+//                    return false;
+//                }
+//
+//                //Search & Update Item
+//                ItemDTO item = findItem(detail.getItemCode());
+//                item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
+//
+//                //Update Item
+//                boolean update = itemDAO.update(item);
+//
+//                if (!update) {
+//                    connection.rollback();
+//                    connection.setAutoCommit(true);
+//                    return false;
+//                }
+//            }
+//
+//            connection.commit();
+//            connection.setAutoCommit(true);
+//            return true;
+//
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
     }
 
     public ItemDTO findItem(String code) {
