@@ -54,6 +54,12 @@ public class CashierManageOrdersFormController {
     public TableColumn colButton;
     private String orderId;
 
+    //Property Injection
+    private final CrudDAO<CustomerDTO,String> customerDAO = new CustomerDAOImpl();
+    private final CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
+    private final CrudDAO<OrderDTO,String> orderDAO = new OrderDAOImpl();
+    private final CrudDAO<OrderDetailDTO,String> orderDetailDAO = new OrderDetailDAOImpl();
+
     public void initialize(){
         colItemCode.setCellValueFactory(new PropertyValueFactory<>("code"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
@@ -102,9 +108,6 @@ public class CashierManageOrdersFormController {
                         if (!existCustomer(newValue + "")) {
                             new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + newValue + "").show();
                         }
-
-                        //DI
-                        CrudDAO<CustomerDTO,String> customerDAO = new CustomerDAOImpl();
                         CustomerDTO search = customerDAO.search(newValue + "");
 
                         txtCustomerName.setText(search.getCustName());
@@ -135,8 +138,6 @@ public class CashierManageOrdersFormController {
                     }
 
                     //Search Item
-                    //DI
-                    CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
                     ItemDTO item = itemDAO.search(newItemCode + "");
 
                     txtItemDescription.setText(item.getDescription());
@@ -184,20 +185,17 @@ public class CashierManageOrdersFormController {
 
     private boolean existItem(String code) throws SQLException, ClassNotFoundException {
         //DI
-        CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
         return itemDAO.exists(code);
     }
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
         //DI
-        CrudDAO<CustomerDTO,String> customerDAO = new CustomerDAOImpl();
         return customerDAO.exists(id);
     }
 
     public String generateNewOrderId() {
         try {
             //DI
-            CrudDAO<OrderDTO,String> orderDAO = new OrderDAOImpl();
             return orderDAO.generateNewID();
 
         } catch (SQLException e) {
@@ -211,8 +209,6 @@ public class CashierManageOrdersFormController {
     private void loadAllItemCodes() {
         try {
             //Get All Items
-            //DI
-            CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
             ArrayList<ItemDTO> all = itemDAO.getAll();
             for(ItemDTO itemDTO : all){
                 cmbItemCode.getItems().add(itemDTO.getItemCode());
@@ -228,8 +224,6 @@ public class CashierManageOrdersFormController {
     private void loadAllCustomerIds() {
         try {
             //Get All Customer
-            //DI
-            CrudDAO<CustomerDTO,String> customerDAO = new CustomerDAOImpl();
             ArrayList<CustomerDTO> all = customerDAO.getAll();
 
             for(CustomerDTO customerDTO : all){
@@ -322,8 +316,6 @@ public class CashierManageOrdersFormController {
         try {
             Connection connection = DBConnection.getDbConnection().getConnection();
 
-            //DI
-            CrudDAO<OrderDTO,String> orderDAO = new OrderDAOImpl();
             /*if order id already exist*/
             if (orderDAO.exists(orderId)) {
 
@@ -331,9 +323,7 @@ public class CashierManageOrdersFormController {
 
             connection.setAutoCommit(false);
 
-            //DI
-            CrudDAO<OrderDTO,String> orderDAO1 = new OrderDAOImpl();
-            boolean save = orderDAO1.save(new OrderDTO(orderId, orderDate, customerId));
+            boolean save = orderDAO.save(new OrderDTO(orderId, orderDate, customerId));
 
             if (!save) {
                 connection.rollback();
@@ -341,8 +331,6 @@ public class CashierManageOrdersFormController {
                 return false;
             }
 
-            //DI
-            CrudDAO<OrderDetailDTO,String> orderDetailDAO = new OrderDetailDAOImpl();
             CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
 
             for (OrderDetailDTO detail : orderDetails) {
@@ -355,13 +343,10 @@ public class CashierManageOrdersFormController {
                 }
 
                 //Search & Update Item
-                //DI
                 ItemDTO item = findItem(detail.getItemCode());
                 item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
 
                 //Update Item
-                //DI
-
                 boolean update = itemDAO.update(item);
 
                 if (!update) {
@@ -386,7 +371,6 @@ public class CashierManageOrdersFormController {
     public ItemDTO findItem(String code) {
         try {
             //DI
-            CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
             return itemDAO.search(code);
 
         } catch (SQLException e) {
