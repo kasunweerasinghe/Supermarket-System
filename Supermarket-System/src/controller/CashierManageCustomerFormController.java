@@ -2,9 +2,8 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.CustomerDAO;
+import dao.CrudDAO;
 import dao.CustomerDAOImpl;
-import db.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,15 +13,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import model.CustomerDTO;
 import view.tm.CustomerTM;
-import view.tm.ItemTM;
 
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class CashierManageCustomerFormController {
@@ -45,7 +41,7 @@ public class CashierManageCustomerFormController {
     public JFXButton btnSave;
 
     //Property Injection
-    private CustomerDAO customerDAO = new CustomerDAOImpl();
+    private final CrudDAO<CustomerDTO,String> customerDAO = new CustomerDAOImpl();
 
     public void initialize(){
         colCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustID"));
@@ -88,7 +84,7 @@ public class CashierManageCustomerFormController {
         tblCustomer.getItems().clear();
         try {
             //get All Customers
-            ArrayList<CustomerDTO> allCustomers = customerDAO.getAllCustomers();
+            ArrayList<CustomerDTO> allCustomers = customerDAO.getAll();
 
             for (CustomerDTO customer: allCustomers) {
                 tblCustomer.getItems().add(new CustomerTM(customer.getCustID(),customer.getCustName(),customer.getCustAddress(),customer.getCustCity(),customer.getCustProvince(),customer.getCustPostalCode()));
@@ -140,7 +136,7 @@ public class CashierManageCustomerFormController {
                     new Alert(Alert.AlertType.ERROR, id + " already exists").show();
                 }
                 //Save Item
-                customerDAO.saveCustomer( new CustomerDTO(id,name,address,city,province,postalCode));
+                customerDAO.save( new CustomerDTO(id,name,address,city,province,postalCode));
 
                 tblCustomer.getItems().add(new CustomerTM(id,name,address,city,province,postalCode));
 
@@ -156,7 +152,7 @@ public class CashierManageCustomerFormController {
                     new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + id).show();
                 }
                 //Update Customers
-                customerDAO.updateCustomer(new CustomerDTO(id,address,name,city,province,postalCode));
+                customerDAO.update(new CustomerDTO(id,address,name,city,province,postalCode));
 
             } catch (SQLException throwables) {
                 new Alert(Alert.AlertType.ERROR, "Failed to update the customer " + id + throwables.getMessage()).show();
@@ -180,7 +176,7 @@ public class CashierManageCustomerFormController {
     }
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        return customerDAO.existsCustomer(id);
+        return customerDAO.exists(id);
     }
 
 
@@ -192,7 +188,7 @@ public class CashierManageCustomerFormController {
                 new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + id).show();
             }
 
-            customerDAO.deleteCustomer(id);
+            customerDAO.delete(id);
 
             tblCustomer.getItems().remove(tblCustomer.getSelectionModel().getSelectedItem());
             tblCustomer.getSelectionModel().clearSelection();

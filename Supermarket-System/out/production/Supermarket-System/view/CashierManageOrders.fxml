@@ -75,7 +75,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="665.0" layoutY="277.0" onAction="#btnAddOrderOnAction" ripplerFill="#bf3232" style="-fx-background-color: #27ae60; -fx-background-radius: 5; -fx-border-color: #000000; -fx-border-radius: 5;" text="Add" textFill="WHITE">
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="665.0" layoutY="277.0" onAction="#btnAddOrderOnAction" ripplerFill="#33bd52" style="-fx-background-color: #ffffff; -fx-background-radius: 5; -fx-border-color: #000000; -fx-border-radius: 5;" text="Add">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
