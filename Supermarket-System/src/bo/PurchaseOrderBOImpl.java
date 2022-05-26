@@ -4,6 +4,7 @@ import dao.CrudDAO;
 import dao.custom.*;
 import dao.custom.impl.*;
 import db.DBConnection;
+import model.CustomerDTO;
 import model.ItemDTO;
 import model.OrderDTO;
 import model.OrderDetailDTO;
@@ -11,6 +12,7 @@ import model.OrderDetailDTO;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseOrderBOImpl {
@@ -25,12 +27,9 @@ public class PurchaseOrderBOImpl {
     public boolean purchaseOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) throws SQLException, ClassNotFoundException {
         /*Transaction*/
         Connection connection = DBConnection.getDbConnection().getConnection();
-
         /*if order id already exist*/
         if (orderDAO.exists(orderId)) {
-
         }
-
         connection.setAutoCommit(false);
 
         boolean save = orderDAO.save(new OrderDTO(orderId, orderDate, customerId));
@@ -74,6 +73,34 @@ public class PurchaseOrderBOImpl {
 
         //return false;
 
+    }
+
+    public CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException {
+        return customerDAO.search(id);
+    }
+
+    public ItemDTO searchItem(String code) throws SQLException, ClassNotFoundException {
+        return itemDAO.search(code);
+    }
+
+    public boolean checkItemIsAvailable(String code) throws SQLException, ClassNotFoundException {
+        return itemDAO.exists(code);
+    }
+
+    public boolean checkCustomerIsAvailable(String id) throws SQLException, ClassNotFoundException {
+        return customerDAO.exists(id);
+    }
+
+    public String generateNewOrderID() throws SQLException, ClassNotFoundException {
+        return orderDAO.generateNewID();
+    }
+
+    public ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException {
+        return customerDAO.getAll();
+    }
+
+    public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException {
+        return itemDAO.getAll();
     }
 
 }

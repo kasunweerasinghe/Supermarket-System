@@ -1,5 +1,6 @@
 package controller;
 
+import bo.PurchaseOrderBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -108,7 +109,9 @@ public class CashierManageOrdersFormController {
                         if (!existCustomer(newValue + "")) {
                             new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + newValue + "").show();
                         }
-                        CustomerDTO search = customerDAO.search(newValue + "");
+
+                        PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
+                        CustomerDTO search = purchaseOrderBO.searchCustomer(newValue + "");
 
                         txtCustomerName.setText(search.getCustName());
                     } catch (SQLException e) {
@@ -138,7 +141,9 @@ public class CashierManageOrdersFormController {
                     }
 
                     //Search Item
-                    ItemDTO item = itemDAO.search(newItemCode + "");
+                    //DI //Tight Coupling
+                    PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
+                    ItemDTO item = purchaseOrderBO.searchItem(newItemCode + "");
 
                     txtItemDescription.setText(item.getDescription());
                     txtUnitPrice.setText(item.getUnitPrice().setScale(2).toString());
@@ -184,19 +189,22 @@ public class CashierManageOrdersFormController {
     }
 
     private boolean existItem(String code) throws SQLException, ClassNotFoundException {
-        //DI
-        return itemDAO.exists(code);
+        //DI //Tight coupling
+        PurchaseOrderBOImpl purchaseOrderBO =  new PurchaseOrderBOImpl();
+        return purchaseOrderBO.checkItemIsAvailable(code);
     }
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        //DI
-        return customerDAO.exists(id);
+        //DI //Tight coupling
+        PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
+        return purchaseOrderBO.checkCustomerIsAvailable(id);
     }
 
     public String generateNewOrderId() {
         try {
-            //DI
-            return orderDAO.generateNewID();
+            //DI //Tight coupling
+            PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
+            return purchaseOrderBO.generateNewOrderID();
 
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to generate a new order id").show();
@@ -206,25 +214,12 @@ public class CashierManageOrdersFormController {
         return "OID-001";
     }
 
-    private void loadAllItemCodes() {
-        try {
-            //Get All Items
-            ArrayList<ItemDTO> all = itemDAO.getAll();
-            for(ItemDTO itemDTO : all){
-                cmbItemCode.getItems().add(itemDTO.getItemCode());
-            }
-
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void loadAllCustomerIds() {
         try {
             //Get All Customer
-            ArrayList<CustomerDTO> all = customerDAO.getAll();
+            //DI ..Tight coupling
+            PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
+            ArrayList<CustomerDTO> all = purchaseOrderBO.getAllCustomers();
 
             for(CustomerDTO customerDTO : all){
                 cmbCustomerID.getItems().add(customerDTO.getCustID());
@@ -237,6 +232,25 @@ public class CashierManageOrdersFormController {
         }
 
     }
+
+    private void loadAllItemCodes() {
+        try {
+            //Get All Items
+            //DI //Tight coupling
+            PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
+            ArrayList<ItemDTO> all = purchaseOrderBO.getAllItems();
+            for(ItemDTO itemDTO : all){
+                cmbItemCode.getItems().add(itemDTO.getItemCode());
+            }
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void btnAddOrderOnAction(ActionEvent actionEvent) {
         if (!txtQty.getText().matches("\\d+") || Integer.parseInt(txtQty.getText()) <= 0 ||
@@ -311,67 +325,24 @@ public class CashierManageOrdersFormController {
     }
 
     public boolean saveOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) {
-//        /*Transaction*/
-//
-//        try {
-//            Connection connection = DBConnection.getDbConnection().getConnection();
-//
-//            /*if order id already exist*/
-//            if (orderDAO.exists(orderId)) {
-//
-//            }
-//
-//            connection.setAutoCommit(false);
-//
-//            boolean save = orderDAO.save(new OrderDTO(orderId, orderDate, customerId));
-//
-//            if (!save) {
-//                connection.rollback();
-//                connection.setAutoCommit(true);
-//                return false;
-//            }
-//
-//            CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
-//
-//            for (OrderDetailDTO detail : orderDetails) {
-//                boolean save1 = orderDetailDAO.save(detail);
-//
-//                if (!save1) {
-//                    connection.rollback();
-//                    connection.setAutoCommit(true);
-//                    return false;
-//                }
-//
-//                //Search & Update Item
-//                ItemDTO item = findItem(detail.getItemCode());
-//                item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
-//
-//                //Update Item
-//                boolean update = itemDAO.update(item);
-//
-//                if (!update) {
-//                    connection.rollback();
-//                    connection.setAutoCommit(true);
-//                    return false;
-//                }
-//            }
-//
-//            connection.commit();
-//            connection.setAutoCommit(true);
-//            return true;
-//
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        return false;
+        //Tight coupling //DI
+        PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
+        try {
+            return purchaseOrderBO.purchaseOrder(orderId,orderDate,customerId,orderDetails);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public ItemDTO findItem(String code) {
         try {
-            //DI
-            return itemDAO.search(code);
+            //DI //Tight coupling
+            PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
+            return purchaseOrderBO.searchItem(code);
 
         } catch (SQLException e) {
             throw new RuntimeException("Failed to find the Item " + code, e);
