@@ -1,5 +1,7 @@
 package controller;
 
+import bo.ItemBO;
+import bo.ItemBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import dao.custom.ItemDAO;
@@ -37,7 +39,7 @@ public class AdminManageItemFormController {
     public JFXButton btnAddNewItem;
 
     //Property Injection
-    private final ItemDAO itemDAO = new ItemDAOImpl();
+    private final ItemBO itemBO = new ItemBOImpl();
 
     public void initialize(){
         colCode.setCellValueFactory(new PropertyValueFactory("ItemCode"));
@@ -73,7 +75,7 @@ public class AdminManageItemFormController {
         tblItem.getItems().clear();
         try {
             //Load Off Item
-            ArrayList<ItemDTO> getAllItems = itemDAO.getAll();
+            ArrayList<ItemDTO> getAllItems = itemBO.getAllItem();
 
             for(ItemDTO item : getAllItems){
                 tblItem.getItems().add(new ItemTM(item.getItemCode(),item.getDescription(),item.getUnitPrice(),item.getQtyOnHand()));
@@ -113,7 +115,7 @@ public class AdminManageItemFormController {
                     new Alert(Alert.AlertType.ERROR, code + " already exists").show();
                 }
                 //Save Item
-                itemDAO.save(new ItemDTO(code,description,unitPrice,qtyOnHand));
+                itemBO.saveItem(new ItemDTO(code,description,unitPrice,qtyOnHand));
 
                 tblItem.getItems().add(new ItemTM(code,description,unitPrice,qtyOnHand));
 
@@ -129,7 +131,7 @@ public class AdminManageItemFormController {
                     new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + code).show();
                 }
                 //Update Item
-                itemDAO.update(new ItemDTO(code,description,unitPrice,qtyOnHand));
+                itemBO.updateItem(new ItemDTO(code,description,unitPrice,qtyOnHand));
 
                 ItemTM selectedItem = tblItem.getSelectionModel().getSelectedItem();
                 selectedItem.setDescription(description);
@@ -148,8 +150,8 @@ public class AdminManageItemFormController {
     }
 
     private boolean existItem(String code) throws SQLException, ClassNotFoundException {
-
-       return itemDAO.exists(code);
+        //DI //Tight couping
+        return itemBO.existsItem(code);
     }
 
 
@@ -162,8 +164,8 @@ public class AdminManageItemFormController {
             if(!existItem(code)){
                 new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + code).show();
             }
-
-            itemDAO.delete(code);
+            //DI //Tight couping
+            itemBO.deleteItem(code);
 
             tblItem.getItems().remove(tblItem.getSelectionModel().getSelectedItem());
             tblItem.getSelectionModel().clearSelection();
@@ -178,13 +180,11 @@ public class AdminManageItemFormController {
 
     }
 
-
-
     private String generateNewID() {
         Connection connection = null;
         try {
-
-            return itemDAO.generateNewID();
+            //DI //Tight couping
+            return itemBO.generateItemNewID();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

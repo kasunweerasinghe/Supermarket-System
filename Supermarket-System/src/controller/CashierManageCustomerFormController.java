@@ -1,5 +1,6 @@
 package controller;
 
+import bo.CustomerBO;
 import bo.CustomerBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -40,6 +41,9 @@ public class CashierManageCustomerFormController {
     public JFXButton btnAddNewCustomer;
     public JFXButton btnDelete;
     public JFXButton btnSave;
+
+    //Property Injection
+    private final CustomerBO customerBO = new CustomerBOImpl();
 
     public void initialize(){
         colCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustID"));
@@ -82,8 +86,6 @@ public class CashierManageCustomerFormController {
         tblCustomer.getItems().clear();
         try {
             //get All Customers
-            //BI Tight Coupling
-            CustomerBOImpl customerBO = new CustomerBOImpl();
             ArrayList<CustomerDTO> allCustomers = customerBO.getAllCustomers();
 
             for (CustomerDTO customer: allCustomers) {
@@ -136,8 +138,6 @@ public class CashierManageCustomerFormController {
                     new Alert(Alert.AlertType.ERROR, id + " already exists").show();
                 }
                 //Save Customers
-                //DI //Loose coupling
-                CustomerBOImpl customerBO = new CustomerBOImpl();
                 customerBO.saveItem( new CustomerDTO(id,name,address,city,province,postalCode));
 
                 tblCustomer.getItems().add(new CustomerTM(id,name,address,city,province,postalCode));
@@ -154,8 +154,6 @@ public class CashierManageCustomerFormController {
                     new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + id).show();
                 }
                 //Update Customers
-                //Di //Tight coupling
-                CustomerBOImpl customerBO = new CustomerBOImpl();
                 customerBO.updateCustomer(new CustomerDTO(id,address,name,city,province,postalCode));
 
             } catch (SQLException throwables) {
@@ -180,8 +178,6 @@ public class CashierManageCustomerFormController {
     }
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        //Di //Tight coupling
-        CustomerBOImpl customerBO = new CustomerBOImpl();
         return customerBO.customerExists(id);
     }
 
@@ -193,8 +189,6 @@ public class CashierManageCustomerFormController {
             if (!existCustomer(id)) {
                 new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + id).show();
             }
-            //Di //Tight coupling
-            CustomerBOImpl customerBO = new CustomerBOImpl();
             customerBO.deleteCustomer(id);
 
             tblCustomer.getItems().remove(tblCustomer.getSelectionModel().getSelectedItem());
@@ -213,8 +207,6 @@ public class CashierManageCustomerFormController {
 
     private String generateNewId() {
         try {
-            //DI //Tight coupling
-            CustomerBOImpl customerBO = new CustomerBOImpl();
             return customerBO.generateCustomerNewID();
 
         } catch (SQLException e) {

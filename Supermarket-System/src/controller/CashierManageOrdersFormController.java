@@ -1,5 +1,6 @@
 package controller;
 
+import bo.PurchaseOrderBO;
 import bo.PurchaseOrderBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -60,6 +61,8 @@ public class CashierManageOrdersFormController {
 //    private final OrderDAO orderDAO = new OrderDAOImpl();
 //    private final OrderDetailDAO orderDetailDAO = new OrderDetailDAOImpl();
 //    private final QueryDAO queryDAO = new QueryDAOImpl();
+
+    private final PurchaseOrderBO purchaseOrderBO = new PurchaseOrderBOImpl();
 
     public void initialize(){
         colItemCode.setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -141,8 +144,6 @@ public class CashierManageOrdersFormController {
                     }
 
                     //Search Item
-                    //DI //Tight Coupling
-                    PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
                     ItemDTO item = purchaseOrderBO.searchItem(newItemCode + "");
 
                     txtItemDescription.setText(item.getDescription());
@@ -189,21 +190,15 @@ public class CashierManageOrdersFormController {
     }
 
     private boolean existItem(String code) throws SQLException, ClassNotFoundException {
-        //DI //Tight coupling
-        PurchaseOrderBOImpl purchaseOrderBO =  new PurchaseOrderBOImpl();
         return purchaseOrderBO.checkItemIsAvailable(code);
     }
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        //DI //Tight coupling
-        PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
         return purchaseOrderBO.checkCustomerIsAvailable(id);
     }
 
     public String generateNewOrderId() {
         try {
-            //DI //Tight coupling
-            PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
             return purchaseOrderBO.generateNewOrderID();
 
         } catch (SQLException e) {
@@ -217,8 +212,6 @@ public class CashierManageOrdersFormController {
     private void loadAllCustomerIds() {
         try {
             //Get All Customer
-            //DI ..Tight coupling
-            PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
             ArrayList<CustomerDTO> all = purchaseOrderBO.getAllCustomers();
 
             for(CustomerDTO customerDTO : all){
@@ -236,8 +229,6 @@ public class CashierManageOrdersFormController {
     private void loadAllItemCodes() {
         try {
             //Get All Items
-            //DI //Tight coupling
-            PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
             ArrayList<ItemDTO> all = purchaseOrderBO.getAllItems();
             for(ItemDTO itemDTO : all){
                 cmbItemCode.getItems().add(itemDTO.getItemCode());
@@ -325,8 +316,6 @@ public class CashierManageOrdersFormController {
     }
 
     public boolean saveOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) {
-        //Tight coupling //DI
-        PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
         try {
             return purchaseOrderBO.purchaseOrder(orderId,orderDate,customerId,orderDetails);
 
@@ -340,8 +329,6 @@ public class CashierManageOrdersFormController {
 
     public ItemDTO findItem(String code) {
         try {
-            //DI //Tight coupling
-            PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
             return purchaseOrderBO.searchItem(code);
 
         } catch (SQLException e) {
