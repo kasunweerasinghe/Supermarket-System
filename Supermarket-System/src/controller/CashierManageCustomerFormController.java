@@ -1,5 +1,6 @@
 package controller;
 
+import bo.CustomerBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import dao.custom.CustomerDAO;
@@ -39,9 +40,6 @@ public class CashierManageCustomerFormController {
     public JFXButton btnAddNewCustomer;
     public JFXButton btnDelete;
     public JFXButton btnSave;
-
-    //Property Injection
-    private final CustomerDAO customerDAO = new CustomerDAOImpl();
 
     public void initialize(){
         colCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustID"));
@@ -84,7 +82,9 @@ public class CashierManageCustomerFormController {
         tblCustomer.getItems().clear();
         try {
             //get All Customers
-            ArrayList<CustomerDTO> allCustomers = customerDAO.getAll();
+            //BI Tight Coupling
+            CustomerBOImpl customerBO = new CustomerBOImpl();
+            ArrayList<CustomerDTO> allCustomers = customerBO.getAllCustomers();
 
             for (CustomerDTO customer: allCustomers) {
                 tblCustomer.getItems().add(new CustomerTM(customer.getCustID(),customer.getCustName(),customer.getCustAddress(),customer.getCustCity(),customer.getCustProvince(),customer.getCustPostalCode()));
@@ -135,8 +135,10 @@ public class CashierManageCustomerFormController {
                 if(existCustomer(id)){
                     new Alert(Alert.AlertType.ERROR, id + " already exists").show();
                 }
-                //Save Item
-                customerDAO.save( new CustomerDTO(id,name,address,city,province,postalCode));
+                //Save Customers
+                //DI //Loose coupling
+                CustomerBOImpl customerBO = new CustomerBOImpl();
+                customerBO.saveItem( new CustomerDTO(id,name,address,city,province,postalCode));
 
                 tblCustomer.getItems().add(new CustomerTM(id,name,address,city,province,postalCode));
 
@@ -152,7 +154,9 @@ public class CashierManageCustomerFormController {
                     new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + id).show();
                 }
                 //Update Customers
-                customerDAO.update(new CustomerDTO(id,address,name,city,province,postalCode));
+                //Di //Tight coupling
+                CustomerBOImpl customerBO = new CustomerBOImpl();
+                customerBO.updateCustomer(new CustomerDTO(id,address,name,city,province,postalCode));
 
             } catch (SQLException throwables) {
                 new Alert(Alert.AlertType.ERROR, "Failed to update the customer " + id + throwables.getMessage()).show();
@@ -176,7 +180,9 @@ public class CashierManageCustomerFormController {
     }
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        return customerDAO.exists(id);
+        //Di //Tight coupling
+        CustomerBOImpl customerBO = new CustomerBOImpl();
+        return customerBO.customerExists(id);
     }
 
 
@@ -187,8 +193,9 @@ public class CashierManageCustomerFormController {
             if (!existCustomer(id)) {
                 new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + id).show();
             }
-
-            customerDAO.delete(id);
+            //Di //Tight coupling
+            CustomerBOImpl customerBO = new CustomerBOImpl();
+            customerBO.deleteCustomer(id);
 
             tblCustomer.getItems().remove(tblCustomer.getSelectionModel().getSelectedItem());
             tblCustomer.getSelectionModel().clearSelection();
@@ -206,8 +213,9 @@ public class CashierManageCustomerFormController {
 
     private String generateNewId() {
         try {
-
-            return customerDAO.generateNewID();
+            //DI //Tight coupling
+            CustomerBOImpl customerBO = new CustomerBOImpl();
+            return customerBO.generateCustomerNewID();
 
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to generate a new id " + e.getMessage()).show();
