@@ -1,4 +1,4 @@
-package bo;
+package bo.custom;
 
 import dao.CrudDAO;
 import dao.custom.impl.ItemDAOImpl;
