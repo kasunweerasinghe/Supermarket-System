@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="CashierSelectFormContext" prefHeight="386.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pos.controller.CashierSelectOrdersorCustomerFormController">
+   <children>
+      <JFXButton buttonType="RAISED" layoutX="447.0" layoutY="16.0" onAction="#btnGoBackOnAction" style="-fx-background-color: #27ae60; -fx-background-radius: 5;" text="Log Out" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="126.0" layoutY="358.0" text="Please select one of above main operations to proceed" />
+      <JFXButton buttonType="RAISED" layoutX="127.0" layoutY="252.0" onAction="#btnCustomerFormOnAction" style="-fx-border-color: #000000; -fx-border-radius: 3;" text="Add Customers">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="324.0" layoutY="252.0" onAction="#btnOrdersFormOnAction" style="-fx-border-color: #000000; -fx-border-radius: 3;" text="Place Orders">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Separator layoutX="7.0" layoutY="86.0" prefHeight="5.0" prefWidth="524.0" />
+      <ImageView fitHeight="87.0" fitWidth="103.0" layoutX="137.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/customers.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="87.0" fitWidth="103.0" layoutX="323.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/orders.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="143.0" layoutY="25.0" text=" Fresh Choice" textFill="#e40707">
+         <font>
+            <Font name="Arial Black" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
