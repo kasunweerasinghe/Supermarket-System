@@ -1,5 +1,6 @@
 package bo.custom;
 
+import bo.SuperBO;
 import dao.CrudDAO;
 import dao.custom.impl.ItemDAOImpl;
 import db.DBConnection;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface PurchaseOrderBO {
+public interface PurchaseOrderBO extends SuperBO {
 
      boolean purchaseOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) throws SQLException, ClassNotFoundException;
 

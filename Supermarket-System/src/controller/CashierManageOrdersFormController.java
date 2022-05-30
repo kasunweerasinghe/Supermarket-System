@@ -1,5 +1,6 @@
 package controller;
 
+import bo.BOFactory;
 import bo.custom.PurchaseOrderBO;
 import bo.custom.impl.PurchaseOrderBOImpl;
 import com.jfoenix.controls.JFXButton;
@@ -58,9 +59,10 @@ public class CashierManageOrdersFormController {
 //    private final OrderDetailDAO orderDetailDAO = new OrderDetailDAOImpl();
 //    private final QueryDAO queryDAO = new QueryDAOImpl();
 
-    private final PurchaseOrderBO purchaseOrderBO = new PurchaseOrderBOImpl();
+    private final PurchaseOrderBO purchaseOrderBO  =(PurchaseOrderBO) BOFactory.boFactory.getBO(BOFactory.BOType.PURCHASE_ORDER);
 
     public void initialize(){
+
         colItemCode.setCellValueFactory(new PropertyValueFactory<>("code"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));

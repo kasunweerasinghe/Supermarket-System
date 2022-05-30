@@ -1,5 +1,6 @@
 package controller;
 
+import bo.BOFactory;
 import bo.custom.CustomerBO;
 import bo.custom.impl.CustomerBOImpl;
 import com.jfoenix.controls.JFXButton;
@@ -41,9 +42,10 @@ public class CashierManageCustomerFormController {
     public JFXButton btnSave;
 
     //Property Injection
-    private final CustomerBO customerBO = new CustomerBOImpl();
+    private CustomerBO customerBO =(CustomerBO) BOFactory.boFactory.getBO(BOFactory.BOType.CUSTOMER);;
 
     public void initialize(){
+
         colCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustID"));
         colCustomerName.setCellValueFactory(new PropertyValueFactory<>("custName"));
         colCustomerAddress.setCellValueFactory(new PropertyValueFactory<>("custAddress"));
