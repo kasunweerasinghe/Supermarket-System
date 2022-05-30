@@ -62,7 +62,6 @@ public class CashierManageOrdersFormController {
     private final PurchaseOrderBO purchaseOrderBO  =(PurchaseOrderBO) BOFactory.boFactory.getBO(BOFactory.BOType.PURCHASE_ORDER);
 
     public void initialize(){
-
         colItemCode.setCellValueFactory(new PropertyValueFactory<>("code"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
