@@ -27,7 +27,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXTextField fx:id="txtCustomerName" labelFloat="true" layoutX="285.0" layoutY="154.0" prefHeight="32.0" prefWidth="426.0" promptText="Customer Name">
+      <JFXTextField fx:id="txtCustomerName" editable="false" labelFloat="true" layoutX="285.0" layoutY="154.0" prefHeight="32.0" prefWidth="426.0" promptText="Customer Name">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -35,7 +35,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXTextField fx:id="txtItemDescription" labelFloat="true" layoutX="285.0" layoutY="211.0" prefHeight="32.0" prefWidth="426.0" promptText="Item Description ">
+      <JFXTextField fx:id="txtItemDescription" editable="false" labelFloat="true" layoutX="285.0" layoutY="211.0" prefHeight="32.0" prefWidth="426.0" promptText="Item Description ">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -85,12 +85,12 @@
       </JFXButton>
       <TableView fx:id="tblOrder" layoutX="9.0" layoutY="347.0" prefHeight="210.0" prefWidth="734.0">
         <columns>
-          <TableColumn fx:id="colItemCode" prefWidth="135.0" text="Item Code" />
-          <TableColumn fx:id="colDescription" prefWidth="162.0" text="Description" />
-            <TableColumn fx:id="colQty" prefWidth="114.0" text="QTY" />
-            <TableColumn fx:id="colUnitPrice" prefWidth="127.0" text="Unit Price" />
+          <TableColumn fx:id="colItemCode" prefWidth="93.0" text="Item Code" />
+          <TableColumn fx:id="colDescription" prefWidth="268.0" text="Description" />
+            <TableColumn fx:id="colQty" prefWidth="71.0" text="QTY" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="117.0" text="Unit Price" />
             <TableColumn fx:id="colTotal" prefWidth="99.0" text="Total" />
-            <TableColumn fx:id="colButton" prefWidth="96.0" text="Delete" />
+            <TableColumn fx:id="colButton" prefWidth="85.0" text="Delete" />
         </columns>
       </TableView>
       <Label fx:id="lblOrderID" layoutX="613.0" layoutY="89.0" text="Order ID:  OID-000">

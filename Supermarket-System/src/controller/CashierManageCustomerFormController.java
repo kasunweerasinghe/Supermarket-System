@@ -1,12 +1,9 @@
 package controller;
 
 import bo.BOFactory;
-import bo.SuperBO;
 import bo.custom.CustomerBO;
-import bo.custom.impl.CustomerBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.custom.ItemDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.CustomerDTO;
+import dto.CustomerDTO;
 import view.tm.CustomerTM;
 
 import java.io.IOException;
@@ -155,7 +152,7 @@ public class CashierManageCustomerFormController {
                     new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + id).show();
                 }
                 //Update Customers
-                customerBO.updateCustomer(new CustomerDTO(id,address,name,city,province,postalCode));
+                customerBO.updateCustomer(new CustomerDTO(id,name,address,city,province,postalCode));
 
             } catch (SQLException throwables) {
                 new Alert(Alert.AlertType.ERROR, "Failed to update the customer " + id + throwables.getMessage()).show();

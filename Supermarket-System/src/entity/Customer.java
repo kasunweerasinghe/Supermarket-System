@@ -1,18 +1,18 @@
-package model;
+package entity;
 
-public class CustomerDTO {
-    private String CustID;
+public class Customer {
+    private String custID;
     private String custName;
     private String custAddress;
     private String custCity;
     private String custProvince;
     private String custPostalCode;
 
-    public CustomerDTO() {
+    public Customer() {
     }
 
-    public CustomerDTO(String custID, String custName, String custAddress, String custCity, String custProvince, String custPostalCode) {
-        CustID = custID;
+    public Customer(String custID, String custName, String custAddress, String custCity, String custProvince, String custPostalCode) {
+        this.custID = custID;
         this.custName = custName;
         this.custAddress = custAddress;
         this.custCity = custCity;
@@ -21,11 +21,11 @@ public class CustomerDTO {
     }
 
     public String getCustID() {
-        return CustID;
+        return custID;
     }
 
     public void setCustID(String custID) {
-        CustID = custID;
+        this.custID = custID;
     }
 
     public String getCustName() {
@@ -70,8 +70,8 @@ public class CustomerDTO {
 
     @Override
     public String toString() {
-        return "CustomerDTO{" +
-                "CustID='" + CustID + '\'' +
+        return "Customer{" +
+                "custID='" + custID + '\'' +
                 ", custName='" + custName + '\'' +
                 ", custAddress='" + custAddress + '\'' +
                 ", custCity='" + custCity + '\'' +

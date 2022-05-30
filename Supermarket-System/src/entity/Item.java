@@ -1,18 +1,18 @@
-package model;
+package entity;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
-public class ItemDTO {
-
+public class Item {
     private String ItemCode;
     private String Description;
     private BigDecimal UnitPrice;
     private int QtyOnHand;
 
-    public ItemDTO() {
+    public Item() {
     }
 
-    public ItemDTO(String itemCode, String description, BigDecimal unitPrice, int qtyOnHand) {
+    public Item(String itemCode, String description, BigDecimal unitPrice, int qtyOnHand) {
         ItemCode = itemCode;
         Description = description;
         UnitPrice = unitPrice;
@@ -53,7 +53,7 @@ public class ItemDTO {
 
     @Override
     public String toString() {
-        return "ItemDTO{" +
+        return "Item{" +
                 "ItemCode='" + ItemCode + '\'' +
                 ", Description='" + Description + '\'' +
                 ", UnitPrice=" + UnitPrice +
