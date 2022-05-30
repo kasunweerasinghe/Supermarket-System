@@ -5,9 +5,8 @@ import dao.custom.ItemDAO;
 import dao.custom.impl.*;
 
 public class DAOFactory {
+
     private static DAOFactory daoFactory;
-
-
 
     private DAOFactory(){
 

@@ -12,15 +12,17 @@ public class BOFactory {
 
     }
 
-    public enum BOType{
-        CUSTOMER,ITEM,PURCHASE_ORDER
-    }
 
-    private static BOFactory getBoFactory(){
+
+    public static BOFactory getBoFactory(){
         if(boFactory==null){
             boFactory = new BOFactory();
         }
         return boFactory;
+    }
+
+    public enum BOType{
+        CUSTOMER,ITEM,PURCHASE_ORDER
     }
 
     public SuperBO getBO(BOType type){

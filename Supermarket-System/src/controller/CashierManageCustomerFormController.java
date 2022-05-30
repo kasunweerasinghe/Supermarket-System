@@ -1,10 +1,12 @@
 package controller;
 
 import bo.BOFactory;
+import bo.SuperBO;
 import bo.custom.CustomerBO;
 import bo.custom.impl.CustomerBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import dao.custom.ItemDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -42,10 +44,9 @@ public class CashierManageCustomerFormController {
     public JFXButton btnSave;
 
     //Property Injection
-    private CustomerBO customerBO =(CustomerBO) BOFactory.boFactory.getBO(BOFactory.BOType.CUSTOMER);
+    private CustomerBO customerBO =(CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.CUSTOMER);
 
     public void initialize(){
-
         colCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustID"));
         colCustomerName.setCellValueFactory(new PropertyValueFactory<>("custName"));
         colCustomerAddress.setCellValueFactory(new PropertyValueFactory<>("custAddress"));
@@ -126,7 +127,7 @@ public class CashierManageCustomerFormController {
             txtCustomerProvince.requestFocus();
             return;
         }else if (!postalCode.matches("^[0-9]{5}$")) {
-            new Alert(Alert.AlertType.ERROR, "postalCode should be at least 3 characters long").show();
+            new Alert(Alert.AlertType.ERROR, "postalCode should be 5 characters long").show();
             txtCustomerPostalCode.requestFocus();
             return;
         }

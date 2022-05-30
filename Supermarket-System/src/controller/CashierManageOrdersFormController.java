@@ -59,7 +59,7 @@ public class CashierManageOrdersFormController {
 //    private final OrderDetailDAO orderDetailDAO = new OrderDetailDAOImpl();
 //    private final QueryDAO queryDAO = new QueryDAOImpl();
 
-    private final PurchaseOrderBO purchaseOrderBO  =(PurchaseOrderBO) BOFactory.boFactory.getBO(BOFactory.BOType.PURCHASE_ORDER);
+    private PurchaseOrderBO purchaseOrderBO = (PurchaseOrderBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.PURCHASE_ORDER);
 
     public void initialize(){
         colItemCode.setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -289,7 +289,8 @@ public class CashierManageOrdersFormController {
         for (OrderDetailTM detail : tblOrder.getItems()) {
             total = total.add(detail.getTotal());
         }
-        lblTotal.setText("Total: " +total);
+        //lblTotal.setText("Total: " +total);
+        lblTotal.setText("" +total);
     }
 
     public void btnPlaceOrderOnAction(ActionEvent actionEvent) {

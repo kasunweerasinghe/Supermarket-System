@@ -1,6 +1,7 @@
 package controller;
 
 import bo.BOFactory;
+import bo.SuperBO;
 import bo.custom.ItemBO;
 import bo.custom.impl.ItemBOImpl;
 import com.jfoenix.controls.JFXButton;
@@ -38,10 +39,9 @@ public class AdminManageItemFormController {
     public JFXButton btnAddNewItem;
 
     //Property Injection
-    private  ItemBO itemBO =(ItemBO) BOFactory.boFactory.getBO(BOFactory.BOType.ITEM);;
+    private  ItemBO itemBO =(ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ITEM);
 
     public void initialize(){
-
         colCode.setCellValueFactory(new PropertyValueFactory("ItemCode"));
         colDescription.setCellValueFactory(new PropertyValueFactory("Description"));
         colQtyOnHand.setCellValueFactory(new PropertyValueFactory("QtyOnHand"));
