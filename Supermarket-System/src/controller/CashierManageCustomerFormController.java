@@ -42,7 +42,7 @@ public class CashierManageCustomerFormController {
     public JFXButton btnSave;
 
     //Property Injection
-    private CustomerBO customerBO =(CustomerBO) BOFactory.boFactory.getBO(BOFactory.BOType.CUSTOMER);;
+    private CustomerBO customerBO =(CustomerBO) BOFactory.boFactory.getBO(BOFactory.BOType.CUSTOMER);
 
     public void initialize(){
 
