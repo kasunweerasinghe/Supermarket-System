@@ -19,25 +19,14 @@ import java.util.List;
 
 public class PurchaseOrderBOImpl implements PurchaseOrderBO {
 
-    CustomerDAO customerDAO =  DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.CUSTOMER);
-    ItemDAO itemDAO = DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.ITEM);
-
-
-    //Property Injection
-    //private final CustomerDAO customerDAO = new CustomerDAOImpl();
-//    private final ItemDAO itemDAO = new ItemDAOImpl();
-    private final OrderDAO orderDAO = new OrderDAOImpl();
-    private final OrderDetailDAO orderDetailDAO = new OrderDetailDAOImpl();
-    private final QueryDAO queryDAO = new QueryDAOImpl();
-
+    private ItemDAO itemDAO =(ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.ITEM);
+    private CustomerDAO customerDAO =(CustomerDAO)  DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.CUSTOMER);
+    private OrderDAO orderDAO =(OrderDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.ORDER);
+    private OrderDetailDAO orderDetailDAO = (OrderDetailDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.ORDERDETAIL);
+    private QueryDAO queryDAO =(QueryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.QUERYDAO);
 
     @Override
     public boolean purchaseOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) throws SQLException, ClassNotFoundException {
-
-
-
-
-
 
         /*Transaction*/
         Connection connection = DBConnection.getDbConnection().getConnection();
