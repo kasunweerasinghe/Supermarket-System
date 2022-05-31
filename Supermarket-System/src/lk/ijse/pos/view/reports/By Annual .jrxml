@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Bt Annual " pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c78aefb3-1711-4c63-9d70-993c676c32d4">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Report By Daily"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[select OrderDetail.ItemCode,YEAR(Supermarket.Orders.OrderDate) as Year,Supermarket.OrderDetail.OrderQTY,Item.Description from Item inner join OrderDetail on Item.ItemCode = OrderDetail.ItemCode inner join Orders on Orders.OrderID=OrderDetail.OrderID;
+]]>
+	</queryString>
+	<field name="ItemCode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ItemCode"/>
+		<property name="com.jaspersoft.studio.field.label" value="ItemCode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orderdetail"/>
+	</field>
+	<field name="Year" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="Year"/>
+		<property name="com.jaspersoft.studio.field.label" value="Year"/>
+	</field>
+	<field name="OrderQTY" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="OrderQTY"/>
+		<property name="com.jaspersoft.studio.field.label" value="OrderQTY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orderdetail"/>
+	</field>
+	<field name="Description" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Description"/>
+		<property name="com.jaspersoft.studio.field.label" value="Description"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="item"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<line>
+				<reportElement x="-20" y="31" width="595" height="1" uuid="dcff5e64-aba7-4be4-b70f-2da4f81cedd2"/>
+			</line>
+			<staticText>
+				<reportElement x="140" y="40" width="242" height="30" uuid="1af6d2bc-7bc8-4222-89fc-f693982c7748"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Items Selling List By Annual .]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="3" width="222" height="30" uuid="85fb9272-0b76-455b-a0c6-e23da50e356d"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FRESH CHOISE.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="141" height="30" uuid="c9d3e68a-a1c0-4cb2-9e7f-5423b11b9565">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="187b9c98-c810-4009-91fe-9248f9793a41"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="138" height="30" uuid="a3c55ca3-1bce-4f90-bbfe-d3c83787f2b2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b4a4bd8f-111b-46b5-a436-01cbc8e16111"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Year]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="138" height="30" uuid="9be23846-9872-4419-bfa7-59e161571182">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="edc33b56-77e2-47ec-8269-f9cd197fe882"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="138" height="30" uuid="f2fad39a-2909-4f7c-bc7c-c3c80b1c8f39">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="95169bf2-bda9-4382-9826-254faffa39c7"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="141" height="30" uuid="d1e7e18b-3246-4a22-b250-19e17faaac7e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="187b9c98-c810-4009-91fe-9248f9793a41"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{ItemCode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="138" height="30" uuid="c6cf555f-e5fd-41d1-b805-5ce9190b12bd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b4a4bd8f-111b-46b5-a436-01cbc8e16111"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Year}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="138" height="30" uuid="09aa95fc-ec74-43e2-b193-d374bb7f1a26">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="edc33b56-77e2-47ec-8269-f9cd197fe882"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{OrderQTY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="138" height="30" uuid="d4a970b0-dfb1-44d9-805b-3db26b9e7792">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="95169bf2-bda9-4382-9826-254faffa39c7"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Description}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

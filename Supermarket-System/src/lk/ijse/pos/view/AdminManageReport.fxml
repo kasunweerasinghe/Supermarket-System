@@ -23,7 +23,22 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="77.0" layoutY="148.0" onAction="#btnSellingItemsReportOnAction" ripplerFill="#e81818" style="-fx-background-color: #686de0; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Selling Items Report" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="53.0" layoutY="220.0" onAction="#btnSellingItemsReportOnAction" ripplerFill="#e81818" style="-fx-background-color: #686de0; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Most and Least Sell Items" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="345.0" layoutY="131.0" onAction="#btnGetReportByDaily" prefHeight="35.0" prefWidth="174.0" ripplerFill="#e81818" style="-fx-background-color: #686de0; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Report By Daily" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="72.0" layoutY="131.0" onAction="#btnGetReportByMonthly" prefHeight="35.0" prefWidth="192.0" ripplerFill="#e81818" style="-fx-background-color: #686de0; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Report By Monthly" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="345.0" layoutY="220.0" onAction="#btnGetReportByAnualy" prefHeight="35.0" prefWidth="192.0" ripplerFill="#e81818" style="-fx-background-color: #686de0; -fx-border-color: #000000; -fx-border-radius: 5; -fx-background-radius: 5;" text="Report By Anualy" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
