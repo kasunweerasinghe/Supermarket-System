@@ -4,8 +4,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Report By Daily"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<queryString>
-		<![CDATA[select OrderDetail.ItemCode,MONTHNAME(Supermarket.Orders.OrderDate) as Month,Supermarket.OrderDetail.OrderQTY,Item.Description from Item inner join OrderDetail on Item.ItemCode = OrderDetail.ItemCode inner join Orders on Orders.OrderID=OrderDetail.OrderID;
-]]>
+		<![CDATA[select OrderDetail.ItemCode,MONTHNAME(Supermarket.Orders.OrderDate) as Month,Supermarket.OrderDetail.OrderQTY,Item.Description from Item inner join OrderDetail on Item.ItemCode = OrderDetail.ItemCode inner join Orders on Orders.OrderID=OrderDetail.OrderID;]]>
 	</queryString>
 	<field name="ItemCode" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="ItemCode"/>
@@ -35,11 +34,11 @@
 				<reportElement x="-20" y="31" width="595" height="1" uuid="e5509e95-5bb6-4031-9ce5-05649f956f11"/>
 			</line>
 			<staticText>
-				<reportElement x="150" y="40" width="222" height="30" uuid="a77f9ae6-a349-412a-9274-d7839fb17846"/>
+				<reportElement x="140" y="40" width="260" height="30" uuid="a77f9ae6-a349-412a-9274-d7839fb17846"/>
 				<textElement textAlignment="Center">
 					<font size="16" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Items Selling List By Daily.]]></text>
+				<text><![CDATA[Items Selling List By Monthly.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="154" y="3" width="222" height="30" uuid="76e8de3d-c326-48d6-b78c-ec6a13f1dc6d"/>
