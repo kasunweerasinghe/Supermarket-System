@@ -3,7 +3,8 @@ layered architecture Course Work
 
 Login Screen.
 
-<img width="522" alt="Screenshot 2022-07-05 at 12 41 28 PM" src="https://user-images.githubusercontent.com/84431272/177272375-130fb758-c5be-4378-9336-b485412a4ae5.png">
+<img width="514" alt="Screenshot 2022-07-13 at 2 07 21 PM" src="https://user-images.githubusercontent.com/84431272/178690415-0e515ab2-7936-4d41-86e9-d2e5f66183b7.png">
+
 
 Manage Items.
 
