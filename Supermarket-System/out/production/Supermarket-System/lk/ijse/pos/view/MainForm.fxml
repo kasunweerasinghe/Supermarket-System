@@ -12,9 +12,9 @@
 
 <AnchorPane fx:id="MainLoginFormContext" prefHeight="430.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pos.controller.MainFormController">
    <children>
-      <ImageView fitHeight="432.0" fitWidth="512.0" layoutX="3.0" pickOnBounds="true">
+      <ImageView fitHeight="432.0" fitWidth="512.0" pickOnBounds="true">
          <image>
-            <Image url="@assests/v915-techi-020.jpg" />
+            <Image url="@assests/5591276.jpg" />
          </image>
       </ImageView>
       <Label layoutX="133.0" layoutY="21.0" text=" Fresh Choice" textFill="#e40707">
