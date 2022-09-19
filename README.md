@@ -16,6 +16,7 @@ ADMIN Manage_Items
 
 <img width="712" alt="Manage_Items" src="https://user-images.githubusercontent.com/84431272/191018206-5058db74-aa9c-48b8-9e63-5bbc5287f727.png">
 
+--------------
 
 CASHIER Dashboard
 
