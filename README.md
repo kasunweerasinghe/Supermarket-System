@@ -1,27 +1,33 @@
 # Supermarket-System
 layered architecture Course Work
 
-Login Screen.
 
-<img width="514" alt="Screenshot 2022-07-13 at 2 07 21 PM" src="https://user-images.githubusercontent.com/84431272/178690415-0e515ab2-7936-4d41-86e9-d2e5f66183b7.png">
+Log_In
 
-
-Manage Items.
-
-<img width="599" alt="Screenshot 2022-07-05 at 12 41 50 PM" src="https://user-images.githubusercontent.com/84431272/177272402-58612040-4ed0-47bd-af1f-5bd0181cc9c9.png">
+<img width="624" alt="Log_In" src="https://user-images.githubusercontent.com/84431272/191018116-afbd307e-ea37-4db4-bb45-03580b363d6d.png">
 
 
-Manage Customer.
+ADMIN Dasboard
 
-<img width="756" alt="Screenshot 2022-07-05 at 12 42 12 PM" src="https://user-images.githubusercontent.com/84431272/177272451-9a978169-83f1-4fc9-9ddf-ec4964afc586.png">
-
-
-Place Order.
-
-<img width="756" alt="Screenshot 2022-07-05 at 12 42 29 PM" src="https://user-images.githubusercontent.com/84431272/177272491-c4747971-9fde-4ecf-bd49-163c82a6df63.png">
+<img width="652" alt="Dasboard" src="https://user-images.githubusercontent.com/84431272/191018161-d36ff9c0-7c72-4a18-ad49-c6974a53d32d.png">
 
 
+ADMIN Manage_Items
+
+<img width="712" alt="Manage_Items" src="https://user-images.githubusercontent.com/84431272/191018206-5058db74-aa9c-48b8-9e63-5bbc5287f727.png">
 
 
-<img width="541" alt="Screenshot 2022-07-05 at 12 42 38 PM" src="https://user-images.githubusercontent.com/84431272/177272514-9e5e67d0-2984-4e01-a823-d672366fa015.png">
+CASHIER Dashboard
+
+<img width="652" alt="Dashboard" src="https://user-images.githubusercontent.com/84431272/191018254-4a790235-d1ab-4acb-a8f9-f5d61d475d9e.png">
+
+
+CASHIER Manage-Customer
+
+<img width="864" alt="Manage-Customer" src="https://user-images.githubusercontent.com/84431272/191018662-632932f9-8f5a-42c4-8f1b-a7ea5f395e46.png">
+
+
+CASHIER Place_Order
+
+<img width="864" alt="Place_Order" src="https://user-images.githubusercontent.com/84431272/191018726-2a3bf54a-0502-48d2-b3d1-9de314db5d4c.png">
 
